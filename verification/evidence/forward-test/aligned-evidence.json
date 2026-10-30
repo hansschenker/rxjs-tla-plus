@@ -1,0 +1,234 @@
+{
+  "recordedAt": "2026-10-30T07:29:00.746Z",
+  "classification": "implementation bug",
+  "tlcCommand": [
+    "java",
+    "-XX:+UseParallelGC",
+    "-Xmx512m",
+    "-cp",
+    "/workspace/scratch/13c2db68ab78/rxjs-tla-plus/.tools/tla2tools-1.7.4.jar",
+    "tlc2.TLC",
+    "-workers",
+    "1",
+    "-fp",
+    "0",
+    "-seed",
+    "1",
+    "-metadir",
+    "/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/artifacts/forward-test/tlc-7ZsIja",
+    "-config",
+    "/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/experiments/02-search-freshness/immediate.cfg",
+    "/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/experiments/02-search-freshness/SearchFreshness.tla"
+  ],
+  "tlcExitCode": 12,
+  "invariant": "FreshEmission",
+  "generatedStates": 139,
+  "distinctStates": 101,
+  "statesLeft": 23,
+  "node": "v24.22.1",
+  "rxjs": "7.8.2",
+  "toolchain": {
+    "tlaTools": {
+      "release": "v1.7.4",
+      "tlcVersion": "2.19",
+      "url": "https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar",
+      "sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+      "file": ".tools/tla2tools-1.7.4.jar"
+    },
+    "rxjs": "7.8.2",
+    "nodeMinimum": 22,
+    "javaMinimum": 11
+  },
+  "inputs": {
+    "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+    "experiments/02-search-freshness/immediate.cfg": "94d019b12de8c9f27693cedbc4bb51e30a50652ddeae63985909c0b9ccbe8918",
+    "runtime/search-pipelines.mjs": "a5d0e3559f212b8590a86aa44ac853faa6475ab776a47e6f8ad3d8af160210bb",
+    "runtime/replay-search-trace.mjs": "36d523dc63130bd9a22ed6c151002b2d1ee73387531f6f7e7b63fa9cbb6611f9",
+    "scripts/check-models.mjs": "51673e4a1cdc70ddd44dee7db3a863005d2e8e86c186fee3d10a568600eb268d",
+    "scripts/setup-tlc.mjs": "2382f76aae1afd5ffcde50d0be0c399a237ae8652b973a179070315fce07f4d1",
+    "experiments.json": "aa26c578b965cadf37c743efb12ee220acd9532743c474cbe69dcc287ab86c04",
+    "toolchain.json": "dce1c15359881326da2e01ef97ee0b9159c4d0cc013a461f73961af013bbad44",
+    "package.json": "73c657697c5c9945a43159573a44ea5aa7109372b84bd566ac20afdcc0d2bee2",
+    "package-lock.json": "fdb039a833f164fd938aaa48598598ea85e98a2b682b28f52e1f10b6a3ad83b2",
+    "artifacts/forward-test/diagnose-aligned.mjs": "f4656137c5c242dbe9ea25b6b18ba4e0764f59ea26e9ee019bb22ecffe1d9569"
+  },
+  "logSha256": "375282ba553ea1ef6c0d83dabf3457472bda9552a4b33b056e01174759482843",
+  "states": [
+    {
+      "step": 1,
+      "at": 0,
+      "event": "Init",
+      "id": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 2,
+      "at": 0,
+      "event": "Query",
+      "id": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 3,
+      "at": 1,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 4,
+      "at": 2,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 5,
+      "at": 3,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 6,
+      "at": 3,
+      "event": "Timer",
+      "id": 1,
+      "latestRaw": 1,
+      "pending": 0,
+      "active": 1,
+      "badEmission": false
+    },
+    {
+      "step": 7,
+      "at": 4,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 0,
+      "active": 1,
+      "badEmission": false
+    },
+    {
+      "step": 8,
+      "at": 4,
+      "event": "Query",
+      "id": 2,
+      "latestRaw": 2,
+      "pending": 2,
+      "active": 1,
+      "badEmission": false
+    },
+    {
+      "step": 9,
+      "at": 4,
+      "event": "Result",
+      "id": 1,
+      "latestRaw": 2,
+      "pending": 2,
+      "active": 0,
+      "badEmission": true
+    }
+  ],
+  "events": [
+    {
+      "type": "Query",
+      "at": 0,
+      "id": 1
+    },
+    {
+      "type": "Query",
+      "at": 4,
+      "id": 2
+    },
+    {
+      "type": "Result",
+      "at": 4,
+      "id": 1
+    }
+  ],
+  "runtime": {
+    "policy": "immediate",
+    "delay": 3,
+    "horizon": 4,
+    "outputs": [
+      {
+        "at": 4,
+        "id": 1,
+        "value": 1
+      }
+    ],
+    "notifications": [
+      {
+        "at": 4,
+        "id": 1,
+        "value": 1,
+        "kind": "N"
+      }
+    ],
+    "requests": [
+      {
+        "id": 1,
+        "start": 3,
+        "stop": 4,
+        "stopReason": "complete"
+      }
+    ],
+    "violations": [
+      {
+        "at": 4,
+        "resultId": 1,
+        "latestQueryId": 2
+      }
+    ],
+    "log": [
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 3,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "Query",
+        "id": 2
+      },
+      {
+        "at": 4,
+        "type": "ResultAttempt",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "Next",
+        "id": 1,
+        "value": 1
+      },
+      {
+        "at": 4,
+        "type": "RequestStop",
+        "id": 1,
+        "reason": "complete"
+      }
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify:mutation
+> node scripts/check-mutation.mjs
+
+file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/scripts/check-coverage.mjs:82
+    throw new Error('Verification review required; do not refresh the pin just to pass.\n'
+          ^
+
+Error: Verification review required; do not refresh the pin just to pass.
+changed: runtime/search-pipelines.mjs
+    at checkCoverage (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/scripts/check-coverage.mjs:82:11)
+    at async file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/scripts/check-mutation.mjs:11:18
+
+Node.js v24.22.1

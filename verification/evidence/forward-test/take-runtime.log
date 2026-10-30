@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: take describes a lazy dataflow until subscribed
+ok 1 - take describes a lazy dataflow until subscribed
+  ---
+  duration_ms: 1.256826
+  type: 'test'
+  ...
+# Subtest: take(0) completes without acquiring the source
+ok 2 - take(0) completes without acquiring the source
+  ---
+  duration_ms: 0.905723
+  type: 'test'
+  ...
+# Subtest: take(2) forwards the second value, completes, and releases the source
+ok 3 - take(2) forwards the second value, completes, and releases the source
+  ---
+  duration_ms: 0.410192
+  type: 'test'
+  ...
+# Subtest: source completion before the quota completes with the existing prefix
+ok 4 - source completion before the quota completes with the existing prefix
+  ---
+  duration_ms: 0.189998
+  type: 'test'
+  ...
+# Subtest: source error preserves the error object and never adds complete
+ok 5 - source error preserves the error object and never adds complete
+  ---
+  duration_ms: 0.271222
+  type: 'test'
+  ...
+# Subtest: downstream cancellation releases the source without a terminal notification
+ok 6 - downstream cancellation releases the source without a terminal notification
+  ---
+  duration_ms: 0.204059
+  type: 'test'
+  ...
+# Subtest: two subscriptions have independent take counters and source lifetimes
+ok 7 - two subscriptions have independent take counters and source lifetimes
+  ---
+  duration_ms: 0.216228
+  type: 'test'
+  ...
+# Subtest: quota and lifecycle checks hold for all 312 bounded runtime histories
+ok 8 - quota and lifecycle checks hold for all 312 bounded runtime histories
+  ---
+  duration_ms: 2.804763
+  type: 'test'
+  ...
+# Subtest: the runtime quota oracle rejects the deliberate take(3) mutant for quota 2
+ok 9 - the runtime quota oracle rejects the deliberate take(3) mutant for quota 2
+  ---
+  duration_ms: 0.919775
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 117.163932

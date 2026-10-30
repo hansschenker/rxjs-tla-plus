@@ -1,0 +1,58 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify
+> npm run check:coverage && npm run verify:models && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 check:coverage
+> node scripts/check-coverage.mjs
+
+Coverage in sync with reviewed source b08677e85e04693e588f13a6a8279c43ad803650 (27 files).
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify:models
+> node scripts/check-models.mjs
+
+take-two: model-checked (17 distinct states)
+take-zero: model-checked (2 distinct states)
+take-mutant: expected-invariant-violation (18 distinct states)
+search-structure: model-checked (750 distinct states)
+search-debounced: expected-invariant-violation (101 distinct states)
+search-immediate: model-checked (619 distinct states)
+search-delivery-witness: expected-invariant-violation (78 distinct states)
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ an expected counterexample requires its named invariant and exit 12 (1.073527ms)
+✔ a successful check requires both a zero exit and completion evidence (0.1659ms)
+✔ the trace decoder preserves whole states and rejects incomplete evidence (0.622437ms)
+✔ debounce before switchMap permits an old result during the next silence wait (3.636277ms)
+✔ the immediate policy closes the old request when raw input arrives (0.796109ms)
+✔ replay defaults only an absent result payload and preserves null or undefined (0.557099ms)
+✔ source completion flushes debounceTime but lets the selected timer finish (0.560073ms)
+✔ queries after source completion do not invalidate the final accepted request (0.482917ms)
+✔ downstream cancellation closes the request and suppresses later work (0.289836ms)
+✔ downstream cancellation during the silence wait prevents a request (0.203947ms)
+✔ a cold source and request execute only after subscription and tear down (0.264688ms)
+✔ source errors discard waiting input or close the active request (0.986596ms)
+✔ equal-time raw input and timer work follow their enqueue order (0.773755ms)
+✔ take describes a lazy dataflow until subscribed (1.62646ms)
+✔ take(0) completes without acquiring the source (1.26794ms)
+✔ take(2) forwards the second value, completes, and releases the source (0.390568ms)
+✔ source completion before the quota completes with the existing prefix (0.201343ms)
+✔ source error preserves the error object and never adds complete (0.538742ms)
+✔ downstream cancellation releases the source without a terminal notification (0.277849ms)
+✔ two subscriptions have independent take counters and source lifetimes (0.214122ms)
+✔ quota and lifecycle checks hold for all 312 bounded runtime histories (4.106425ms)
+✔ the runtime quota oracle rejects the deliberate take(3) mutant for quota 2 (1.143362ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 145.614066

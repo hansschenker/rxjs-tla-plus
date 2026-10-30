@@ -1,0 +1,52 @@
+{
+  "status": "completed",
+  "recordedAt": "2026-10-30T07:28:09.789Z",
+  "sourceCommit": "094b4b56a77d9e3ead2837f2725c0f7724a8a983",
+  "headCommit": "094b4b56a77d9e3ead2837f2725c0f7724a8a983",
+  "inputFilesMatchHead": true,
+  "mode": "TLC breadth-first exploration; finite domains and search horizon; no simulation",
+  "toolchain": {
+    "tlaTools": {
+      "release": "v1.7.4",
+      "tlcVersion": "2.19",
+      "url": "https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar",
+      "sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+      "file": ".tools/tla2tools-1.7.4.jar"
+    },
+    "rxjs": "7.8.2",
+    "nodeMinimum": 22,
+    "javaMinimum": 11
+  },
+  "node": "v24.22.1",
+  "inputs": {
+    "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+    "experiments/02-search-freshness/immediate.cfg": "b39b1c16ceb09c65a6b939d5f318bc74a7d0d2b53a0d70ac8aecc977041a3b1c",
+    "experiments.json": "aa26c578b965cadf37c743efb12ee220acd9532743c474cbe69dcc287ab86c04",
+    "toolchain.json": "dce1c15359881326da2e01ef97ee0b9159c4d0cc013a461f73961af013bbad44",
+    "package.json": "73c657697c5c9945a43159573a44ea5aa7109372b84bd566ac20afdcc0d2bee2",
+    "package-lock.json": "fdb039a833f164fd938aaa48598598ea85e98a2b682b28f52e1f10b6a3ad83b2",
+    "runtime/search-pipelines.mjs": "a5d0e3559f212b8590a86aa44ac853faa6475ab776a47e6f8ad3d8af160210bb",
+    "runtime/replay-search-trace.mjs": "36d523dc63130bd9a22ed6c151002b2d1ee73387531f6f7e7b63fa9cbb6611f9",
+    "scripts/check-models.mjs": "51673e4a1cdc70ddd44dee7db3a863005d2e8e86c186fee3d10a568600eb268d",
+    "scripts/setup-tlc.mjs": "2382f76aae1afd5ffcde50d0be0c399a237ae8652b973a179070315fce07f4d1"
+  },
+  "reports": [
+    {
+      "id": "search-immediate",
+      "module": "experiments/02-search-freshness/SearchFreshness.tla",
+      "config": "experiments/02-search-freshness/immediate.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 897,
+      "generatedStates": 1054,
+      "distinctStates": 619,
+      "statesLeft": 0,
+      "logSha256": "a89054001536a282518ebe9ac0fc17bee80c98ea49af5de84e30c7af2f085434",
+      "inputs": {
+        "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+        "experiments/02-search-freshness/immediate.cfg": "b39b1c16ceb09c65a6b939d5f318bc74a7d0d2b53a0d70ac8aecc977041a3b1c"
+      }
+    }
+  ]
+}

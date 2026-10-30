@@ -1,0 +1,12 @@
+diff --git a/experiments/02-search-freshness/immediate.cfg b/experiments/02-search-freshness/immediate.cfg
+index 0d57e39..cc16bb2 100644
+--- a/experiments/02-search-freshness/immediate.cfg
++++ b/experiments/02-search-freshness/immediate.cfg
+@@ -1,6 +1,6 @@
+ SPECIFICATION Spec
+ CONSTANTS
+-  Policy = "immediate"
++  Policy = "debounced"
+   Delay = 3
+   Horizon = 9
+   MaxQueries = 2

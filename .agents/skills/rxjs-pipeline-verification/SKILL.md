@@ -7,6 +7,8 @@ description: Create or maintain the bounded TLA+ checks, RxJS runtime correspond
 
 ## Synchronization
 
+Reviewed source: `b08677e85e04693e588f13a6a8279c43ad803650`.
+
 The exact reviewed source commit and SHA-256 file inventory live in `verification/coverage.json`. Read them before making a verification claim. A documentation/evidence commit may follow the reviewed source commit without changing covered inputs. The guard is change detection, not a proof that a model faithfully represents code.
 
 Upstream workflow inspiration: `create-formal-verification-skill` and `maintain-formal-verification-skill` from `ericlitman/open-pstack` at `b4c5e3d63318308b7e11f26b2bc156e7793d834a`; see `upstream-lock.json` for exact paths and blob IDs. This skill is specific to this repository and is not an installation of those upstream skills.
@@ -70,6 +72,8 @@ Align the verification with the observed implementation without silently weakeni
 
 For the search counterexample, replay the checker's actual external Query/Result/Cancel events with the same integer times and event order. Verify result IDs, output times, request start times and the same property violation. Preserve the distinction between subscription cancellation and physical transport abort.
 
+If an implementation regression stops the aggregate replay before it writes its JSON, retain the raw TLC log in `artifacts/`. Use exported `decodeSearchTrace` from `scripts/check-models.mjs` and `replaySearchTrace` from `runtime/replay-search-trace.mjs` in a focused diagnostic. Check TLC exit 12 and the exact invariant, then compare the failing implementation's output and request start events with the decoded states. Leave the normal positive expectation in `experiments.json` unchanged: a diagnostic that successfully reproduces a bug is not a passing property check.
+
 The optional second-checker comparison is:
 
 ```sh
@@ -86,6 +90,8 @@ npm run verify:mutation
 ```
 
 This controlled drill uses a disposable local Git repository. It changes immediate cancellation to delayed selection, observes source drift, runs the unchanged model, runs independent RxJS checks, and aligns only the model policy with the changed code. It preserves `FreshEmission` and expects the aligned model to violate it. Logs and commit identities remain in `artifacts/maintenance-drill.*`; the temporary implementation is discarded.
+
+The drill requires a clean reviewed baseline. During an already-drifted maintenance task, record that prerequisite failure and use the actual regression plus focused model/runtime checks as fault-sensitivity evidence. Do not refresh the coverage pin to make the drill start. Re-run the automated drill after an authorized repair and reviewed source update.
 
 For a new property, choose a similarly targeted defect and show that the relevant model or independent runtime evidence rejects it. Do not modify the expected requirement to make the defect pass. Do not treat a mutation that only changes a model as proof of implementation sensitivity.
 

@@ -1,0 +1,84 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 8 cores with 455MB heap and 64MB offheap memory [pid: 6939] (Linux 6.18.57 amd64, Ubuntu 17.0.20 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /workspace/scratch/13c2db68ab78/rxjs-tla-plus/experiments/01-take/Take.tla
+Parsing file /tmp/Naturals.tla
+Parsing file /tmp/Sequences.tla
+Parsing file /tmp/FiniteSets.tla
+Semantic processing of module Naturals
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module Take
+Starting... (2026-10-30 08:32:35)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-30 08:32:35.
+Error: Invariant QuotaBound is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ lastEvent = "init"
+/\ releases = 0
+/\ closeReason = "none"
+/\ sourceConnected = FALSE
+/\ seen = 0
+/\ lastActions = <<>>
+/\ received = <<>>
+/\ acquisitions = 0
+/\ notifications = <<>>
+/\ phase = "Unsubscribed"
+/\ output = <<>>
+
+State 2: <Subscribe line 37, col 5 to line 47, col 53 of module Take>
+/\ lastEvent = "subscribe"
+/\ releases = 0
+/\ closeReason = "none"
+/\ sourceConnected = TRUE
+/\ seen = 0
+/\ lastActions = <<"source.subscribe">>
+/\ received = <<>>
+/\ acquisitions = 1
+/\ notifications = <<>>
+/\ phase = "Active"
+/\ output = <<>>
+
+State 3: <SourceNext line 51, col 5 to line 67, col 29 of module Take>
+/\ lastEvent = "source.next"
+/\ releases = 0
+/\ closeReason = "none"
+/\ sourceConnected = TRUE
+/\ seen = 1
+/\ lastActions = <<"notify.next">>
+/\ received = <<"a">>
+/\ acquisitions = 1
+/\ notifications = <<"next">>
+/\ phase = "Active"
+/\ output = <<"a">>
+
+State 4: <SourceNext line 51, col 5 to line 67, col 29 of module Take>
+/\ lastEvent = "source.next"
+/\ releases = 0
+/\ closeReason = "none"
+/\ sourceConnected = TRUE
+/\ seen = 2
+/\ lastActions = <<"notify.next">>
+/\ received = <<"a", "a">>
+/\ acquisitions = 1
+/\ notifications = <<"next", "next">>
+/\ phase = "Active"
+/\ output = <<"a", "a">>
+
+State 5: <SourceNext line 51, col 5 to line 67, col 29 of module Take>
+/\ lastEvent = "source.next"
+/\ releases = 1
+/\ closeReason = "quota"
+/\ sourceConnected = FALSE
+/\ seen = 3
+/\ lastActions = <<"notify.next", "notify.complete", "source.unsubscribe">>
+/\ received = <<"a", "a", "a">>
+/\ acquisitions = 1
+/\ notifications = <<"next", "next", "next", "complete">>
+/\ phase = "Closed"
+/\ output = <<"a", "a", "a">>
+
+21 states generated, 18 distinct states found, 9 states left on queue.
+The depth of the complete state graph search is 5.
+The average outdegree of the complete state graph is 2 (minimum is 0, the maximum 5 and the 95th percentile is 5).
+Finished in 00s at (2026-10-30 08:32:35)

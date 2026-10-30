@@ -27,6 +27,12 @@ This demonstrates why model checking alone does not prevent implementation/model
 
 The drill never repairs or changes the production implementation. It does not weaken `FreshEmission`, turn an unexpected failure into an accepted case, or refresh the reviewed pin. Its scratch repository is removed. Recorded [maintenance evidence](../verification/evidence/maintenance-drill.json) retains the local commit identities, patch, file hashes and classification; those scratch commits are not GitHub commits.
 
+### Forward test with a separate agent
+
+A separate agent received a disposable changed checkout and the generated project skill, with no instruction to repair the implementation. Following the skill, it found the changed cancellation boundary, observed the stale model's successful 619-state check, ran all ten search tests by name (six passed, four failed), and aligned only the model policy. The aligned model violated `FreshEmission` and its actual trace reproduced the bug through the changed runtime entry point. The agent classified the result as an **implementation bug** and left the positive gate failing.
+
+Its [forward-test report](../verification/evidence/skill-forward-test.md) records the commands, local-only source revisions, hashes, trace and interpretation. It also identified two instruction gaps: the automated mutation drill needs a clean reviewed baseline, and a failing aggregate replay may require a focused diagnostic to preserve decoded evidence. The final project skill now explains both cases. These instruction changes were reviewed after the forward test; the test was not rerun against the revised wording.
+
 ## Second checker trial prompted by `tla-ts`
 
 The additional [checker comparison](../experiments/03-tla-ts/README.md) feeds the same specifications into `tla-ts@0.0.3` and official TLC. It compares seven outcomes, invariant names, generated/distinct counts and search depths. It also converts `tla-ts`'s structured violation states into the existing RxJS replay interface without parsing console output.

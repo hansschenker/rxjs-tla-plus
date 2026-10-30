@@ -1,0 +1,28 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify:models
+> node scripts/check-models.mjs
+
+take-two: model-checked (17 distinct states)
+take-zero: model-checked (2 distinct states)
+take-mutant: expected-invariant-violation (18 distinct states)
+search-structure: model-checked (750 distinct states)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+1 !== 0
+
+    at checkModels (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/scripts/check-models.mjs:110:14)
+    at async file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/scripts/check-models.mjs:155:3 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+
+Node.js v24.22.1

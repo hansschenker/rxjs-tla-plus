@@ -1,0 +1,65 @@
+import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
+import { createRequire } from 'node:module';
+import { readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
+import { dirname, resolve } from 'node:path';
+import { root, verifyJar, digest, toolchain } from '../../scripts/setup-tlc.mjs';
+import { classifyResult, decodeSearchTrace } from '../../scripts/check-models.mjs';
+import { replaySearchTrace } from '../../runtime/replay-search-trace.mjs';
+
+// Diagnostic reproduction only: the ordinary gate still requires this model to pass.
+const outputDir = resolve(root, 'artifacts/forward-test');
+const model = 'experiments/02-search-freshness/SearchFreshness.tla';
+const config = 'experiments/02-search-freshness/immediate.cfg';
+const jar = await verifyJar();
+const meta = await mkdtemp(resolve(outputDir, 'tlc-'));
+const args = ['-XX:+UseParallelGC', '-Xmx512m', '-cp', jar, 'tlc2.TLC',
+  '-workers', '1', '-fp', '0', '-seed', '1', '-metadir', meta,
+  '-config', resolve(root, config), resolve(root, model)];
+let result;
+try {
+  result = spawnSync('java', args, {
+    cwd: dirname(resolve(root, model)), encoding: 'utf8', timeout: 45000,
+    maxBuffer: 8 * 1024 * 1024,
+  });
+} finally {
+  await rm(meta, { recursive: true, force: true });
+}
+const output = String(result.stdout || '') + String(result.stderr || '');
+await writeFile(resolve(outputDir, 'aligned-tlc.log'), output);
+classifyResult(result, { id: 'forward-test-aligned', expect: 'violation', invariant: 'FreshEmission' });
+const states = decodeSearchTrace(output);
+const events = states.filter(({ event }) => ['Query', 'Result', 'Cancel'].includes(event))
+  .map(({ event, at, id }) => ({ type: event === 'Cancel' ? 'Unsubscribe' : event, at, id }));
+const runtime = replaySearchTrace(events, {
+  policy: 'immediate', delay: 3, horizon: states.at(-1).at,
+});
+assert.deepEqual(runtime.outputs.map(({ at, id }) => ({ at, id })),
+  states.filter(({ event }) => event === 'Result').map(({ at, id }) => ({ at, id })));
+assert.deepEqual(runtime.requests.map(({ id, start }) => ({ id, start })),
+  states.filter(({ event }) => event === 'Timer').map(({ id, at }) => ({ id, start: at })));
+assert.ok(runtime.violations.length > 0, 'Changed implementation must reproduce FreshEmission failure.');
+const require = createRequire(import.meta.url);
+assert.equal(require('rxjs/package.json').version, '7.8.2');
+const inputPaths = [model, config, 'runtime/search-pipelines.mjs', 'runtime/replay-search-trace.mjs',
+  'scripts/check-models.mjs', 'scripts/setup-tlc.mjs', 'experiments.json', 'toolchain.json',
+  'package.json', 'package-lock.json', 'artifacts/forward-test/diagnose-aligned.mjs'];
+const inputs = Object.fromEntries(await Promise.all(inputPaths.map(async (path) =>
+  [path, digest(await readFile(resolve(root, path)))])));
+const counts = output.match(/(\d+) states generated, (\d+) distinct states found, (\d+) states left on queue/);
+assert.ok(counts);
+const evidence = {
+  recordedAt: new Date().toISOString(), classification: 'implementation bug',
+  tlcCommand: ['java', ...args], tlcExitCode: result.status, invariant: 'FreshEmission',
+  generatedStates: Number(counts[1]), distinctStates: Number(counts[2]), statesLeft: Number(counts[3]),
+  node: process.version, rxjs: require('rxjs/package.json').version, toolchain,
+  inputs, logSha256: digest(output), states, events, runtime,
+};
+await writeFile(resolve(outputDir, 'aligned-evidence.json'), JSON.stringify(evidence, null, 2) + '\n');
+console.log(JSON.stringify({
+  classification: evidence.classification, tlcExitCode: evidence.tlcExitCode,
+  invariant: evidence.invariant, generatedStates: evidence.generatedStates,
+  distinctStates: evidence.distinctStates, statesLeft: evidence.statesLeft,
+  events, outputs: runtime.outputs, requests: runtime.requests, violations: runtime.violations,
+  node: evidence.node, rxjs: evidence.rxjs, inputs,
+}, null, 2));

@@ -1,0 +1,477 @@
+{"command":["git","init","-b","main"],"exitCode":0}
+Initialized empty Git repository in /workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/.git/
+
+{"command":["git","add","."],"exitCode":0}
+
+{"command":["git","-c","user.name=RxJS TLA+ experiment","-c","user.email=experiment@example.invalid","commit","-m","Controlled maintenance baseline"],"exitCode":0}
+[main (root-commit) 1ef42d7] Controlled maintenance baseline
+ 33 files changed, 2417 insertions(+)
+ create mode 100644 .agents/skills/rxjs-pipeline-verification/SKILL.md
+ create mode 100644 .github/workflows/verify.yml
+ create mode 100644 .gitignore
+ create mode 100644 experiments.json
+ create mode 100644 experiments/01-take/README.md
+ create mode 100644 experiments/01-take/Take.tla
+ create mode 100644 experiments/01-take/mutant-extra-value.cfg
+ create mode 100644 experiments/01-take/take-two.cfg
+ create mode 100644 experiments/01-take/take-zero.cfg
+ create mode 100644 experiments/02-search-freshness/README.md
+ create mode 100644 experiments/02-search-freshness/SearchFreshness.tla
+ create mode 100644 experiments/02-search-freshness/debounced-structure.cfg
+ create mode 100644 experiments/02-search-freshness/debounced.cfg
+ create mode 100644 experiments/02-search-freshness/immediate-witness.cfg
+ create mode 100644 experiments/02-search-freshness/immediate.cfg
+ create mode 100644 experiments/03-tla-ts/README.md
+ create mode 100644 experiments/03-tla-ts/compare.mjs
+ create mode 100644 experiments/03-tla-ts/package-lock.json
+ create mode 100644 experiments/03-tla-ts/package.json
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 runtime/replay-search-trace.mjs
+ create mode 100644 runtime/search-pipelines.mjs
+ create mode 100644 scripts/check-coverage.mjs
+ create mode 100644 scripts/check-models.mjs
+ create mode 100644 scripts/check-mutation.mjs
+ create mode 100644 scripts/setup-tlc.mjs
+ create mode 100644 tests/checker-results.test.mjs
+ create mode 100644 tests/search-freshness.test.mjs
+ create mode 100644 tests/take.test.mjs
+ create mode 100644 toolchain.json
+ create mode 100644 upstream-lock.json
+ create mode 100644 verification/coverage.json
+
+{"command":["git","rev-parse","HEAD"],"exitCode":0}
+1ef42d7b932f86b14bce400b98e86a70b3c7df69
+
+{"command":["git","add","."],"exitCode":0}
+
+{"command":["git","-c","user.name=RxJS TLA+ experiment","-c","user.email=experiment@example.invalid","commit","-m","Introduce delayed cancellation for the maintenance drill"],"exitCode":0}
+[main f3de8d2] Introduce delayed cancellation for the maintenance drill
+ 1 file changed, 1 insertion(+)
+
+{"command":["git","rev-parse","HEAD"],"exitCode":0}
+f3de8d2790c4d54a7c448bac16210ab9928e9928
+
+{"command":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","scripts/check-coverage.mjs"],"exitCode":1}
+Verification review required; do not refresh the pin just to pass.
+changed: runtime/search-pipelines.mjs
+
+{"command":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","scripts/check-models.mjs","search-immediate"],"exitCode":0}
+search-immediate: model-checked (619 distinct states)
+
+{"command":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","--test","--test-reporter=tap","tests/search-freshness.test.mjs"],"exitCode":1}
+TAP version 13
+# Subtest: debounce before switchMap permits an old result during the next silence wait
+ok 1 - debounce before switchMap permits an old result during the next silence wait
+  ---
+  duration_ms: 3.333709
+  type: 'test'
+  ...
+# Subtest: the immediate policy closes the old request when raw input arrives
+not ok 2 - the immediate policy closes the old request when raw input arrives
+  ---
+  duration_ms: 1.804987
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+    +     at: 5,
+    +     id: 1,
+    +     value: 1
+    +   },
+    +   {
+          at: 8,
+          id: 2,
+          value: 2
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      at: 8
+      id: 2
+      value: 2
+  actual:
+    0:
+      at: 5
+      id: 1
+      value: 1
+    1:
+      at: 8
+      id: 2
+      value: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:34:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: replay defaults only an absent result payload and preserves null or undefined
+ok 3 - replay defaults only an absent result payload and preserves null or undefined
+  ---
+  duration_ms: 0.679593
+  type: 'test'
+  ...
+# Subtest: source completion flushes debounceTime but lets the selected timer finish
+not ok 4 - source completion flushes debounceTime but lets the selected timer finish
+  ---
+  duration_ms: 0.655476
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:61:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:70:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: queries after source completion do not invalidate the final accepted request
+not ok 5 - queries after source completion do not invalidate the final accepted request
+  ---
+  duration_ms: 0.76384
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:79:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+          id: 1,
+    +     start: 1,
+    -     start: 3,
+          stop: 4,
+          stopReason: 'complete'
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      id: 1
+      start: 3
+      stop: 4
+      stopReason: 'complete'
+  actual:
+    0:
+      id: 1
+      start: 1
+      stop: 4
+      stopReason: 'complete'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:90:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: downstream cancellation closes the request and suppresses later work
+ok 6 - downstream cancellation closes the request and suppresses later work
+  ---
+  duration_ms: 0.207613
+  type: 'test'
+  ...
+# Subtest: downstream cancellation during the silence wait prevents a request
+ok 7 - downstream cancellation during the silence wait prevents a request
+  ---
+  duration_ms: 0.163576
+  type: 'test'
+  ...
+# Subtest: a cold source and request execute only after subscription and tear down
+ok 8 - a cold source and request execute only after subscription and tear down
+  ---
+  duration_ms: 0.248224
+  type: 'test'
+  ...
+# Subtest: source errors discard waiting input or close the active request
+ok 9 - source errors discard waiting input or close the active request
+  ---
+  duration_ms: 0.845623
+  type: 'test'
+  ...
+# Subtest: equal-time raw input and timer work follow their enqueue order
+not ok 10 - equal-time raw input and timer work follow their enqueue order
+  ---
+  duration_ms: 0.749078
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:189:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+          at: 3,
+          id: 1,
+          type: 'start'
+        },
+        {
+    +     at: 6,
+    -     at: 3,
+          id: 1,
+          type: 'stop'
+        },
+        {
+          at: 6,
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      at: 3
+      type: 'start'
+      id: 1
+    1:
+      at: 3
+      type: 'stop'
+      id: 1
+    2:
+      at: 6
+      type: 'start'
+      id: 2
+  actual:
+    0:
+      at: 3
+      type: 'start'
+      id: 1
+    1:
+      at: 6
+      type: 'stop'
+      id: 1
+    2:
+      at: 6
+      type: 'start'
+      id: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tests/search-freshness.test.mjs:215:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 6
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 159.569736
+
+{"command":["git","add","."],"exitCode":0}
+
+{"command":["git","-c","user.name=RxJS TLA+ experiment","-c","user.email=experiment@example.invalid","commit","-m","Align model policy with changed implementation; preserve freshness requirement"],"exitCode":0}
+[main 84d0e36] Align model policy with changed implementation; preserve freshness requirement
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+{"command":["git","rev-parse","HEAD"],"exitCode":0}
+84d0e36f4953bb6f891014316c1b669d78b016c4
+
+{"command":["java","-XX:+UseParallelGC","-Xmx512m","-cp","/workspace/scratch/13c2db68ab78/rxjs-tla-plus/.tools/tla2tools-1.7.4.jar","tlc2.TLC","-workers","1","-fp","0","-seed","1","-metadir","/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/tlc-QJcJsl","-config","/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/experiments/02-search-freshness/immediate.cfg","/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/experiments/02-search-freshness/SearchFreshness.tla"],"exitCode":12}
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 8 cores with 455MB heap and 64MB offheap memory [pid: 6650] (Linux 6.18.57 amd64, Ubuntu 17.0.20 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/maintenance-oyyBum/experiments/02-search-freshness/SearchFreshness.tla
+Parsing file /tmp/Integers.tla
+Parsing file /tmp/FiniteSets.tla
+Parsing file /tmp/Naturals.tla
+Parsing file /tmp/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module SearchFreshness
+Starting... (2026-10-30 08:32:32)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-30 08:32:32.
+Error: Invariant FreshEmission is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ pending = 0
+/\ lastEvent = "Init"
+/\ now = 0
+/\ lastTimerAt = -1
+/\ started = {}
+/\ lastId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 0
+/\ delivered = {}
+/\ deadline = -1
+
+State 2: <Query line 39, col 3 to line 47, col 74 of module SearchFreshness>
+/\ pending = 1
+/\ lastEvent = "Query"
+/\ now = 0
+/\ lastTimerAt = -1
+/\ started = {}
+/\ lastId = 1
+/\ active = 0
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 1
+/\ delivered = {}
+/\ deadline = 3
+
+State 3: <Tick line 83, col 3 to line 89, col 54 of module SearchFreshness>
+/\ pending = 1
+/\ lastEvent = "Tick"
+/\ now = 1
+/\ lastTimerAt = -1
+/\ started = {}
+/\ lastId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 1
+/\ delivered = {}
+/\ deadline = 3
+
+State 4: <Tick line 83, col 3 to line 89, col 54 of module SearchFreshness>
+/\ pending = 1
+/\ lastEvent = "Tick"
+/\ now = 2
+/\ lastTimerAt = -1
+/\ started = {}
+/\ lastId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 1
+/\ delivered = {}
+/\ deadline = 3
+
+State 5: <Tick line 83, col 3 to line 89, col 54 of module SearchFreshness>
+/\ pending = 1
+/\ lastEvent = "Tick"
+/\ now = 3
+/\ lastTimerAt = -1
+/\ started = {}
+/\ lastId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 1
+/\ delivered = {}
+/\ deadline = 3
+
+State 6: <Timer line 50, col 3 to line 59, col 63 of module SearchFreshness>
+/\ pending = 0
+/\ lastEvent = "Timer"
+/\ now = 3
+/\ lastTimerAt = 3
+/\ started = {1}
+/\ lastId = 1
+/\ active = 1
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 1
+/\ delivered = {}
+/\ deadline = -1
+
+State 7: <Tick line 83, col 3 to line 89, col 54 of module SearchFreshness>
+/\ pending = 0
+/\ lastEvent = "Tick"
+/\ now = 4
+/\ lastTimerAt = 3
+/\ started = {1}
+/\ lastId = 0
+/\ active = 1
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 1
+/\ delivered = {}
+/\ deadline = -1
+
+State 8: <Query line 39, col 3 to line 47, col 74 of module SearchFreshness>
+/\ pending = 2
+/\ lastEvent = "Query"
+/\ now = 4
+/\ lastTimerAt = 3
+/\ started = {1}
+/\ lastId = 2
+/\ active = 1
+/\ badEmission = FALSE
+/\ open = TRUE
+/\ latestRaw = 2
+/\ delivered = {}
+/\ deadline = 7
+
+State 9: <Result line 63, col 3 to line 70, col 80 of module SearchFreshness>
+/\ pending = 2
+/\ lastEvent = "Result"
+/\ now = 4
+/\ lastTimerAt = 3
+/\ started = {1}
+/\ lastId = 1
+/\ active = 0
+/\ badEmission = TRUE
+/\ open = TRUE
+/\ latestRaw = 2
+/\ delivered = {1}
+/\ deadline = 7
+
+139 states generated, 101 distinct states found, 23 states left on queue.
+The depth of the complete state graph search is 9.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 4 and the 95th percentile is 3).
+Finished in 00s at (2026-10-30 08:32:32)
+
+{"command":["git","diff","1ef42d7b932f86b14bce400b98e86a70b3c7df69","HEAD","--","runtime/search-pipelines.mjs","experiments/02-search-freshness/immediate.cfg"],"exitCode":0}
+diff --git a/experiments/02-search-freshness/immediate.cfg b/experiments/02-search-freshness/immediate.cfg
+index 0d57e39..cc16bb2 100644
+--- a/experiments/02-search-freshness/immediate.cfg
++++ b/experiments/02-search-freshness/immediate.cfg
+@@ -1,6 +1,6 @@
+ SPECIFICATION Spec
+ CONSTANTS
+-  Policy = "immediate"
++  Policy = "debounced"
+   Delay = 3
+   Horizon = 9
+   MaxQueries = 2
+diff --git a/runtime/search-pipelines.mjs b/runtime/search-pipelines.mjs
+index 829d60a..bebbf7c 100644
+--- a/runtime/search-pipelines.mjs
++++ b/runtime/search-pipelines.mjs
+@@ -18,6 +18,7 @@ export function createDebouncedSearch$(queries$, search, delay, scheduler) {
+  * Source completion lets the final timer/request finish; it does not flush the timer.
+  */
+ export function createImmediateCancelSearch$(queries$, search, delay, scheduler) {
++  return createDebouncedSearch$(queries$, search, delay, scheduler); // deliberate regression
+   return queries$.pipe(
+     switchMap((query) => timer(delay, scheduler).pipe(
+       switchMap(() => search(query)),

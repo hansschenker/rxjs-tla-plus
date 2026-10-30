@@ -1,0 +1,7 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 check:coverage
+> node scripts/check-coverage.mjs
+
+Verification review required; do not refresh the pin just to pass.
+changed: runtime/search-pipelines.mjs

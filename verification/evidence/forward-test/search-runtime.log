@@ -1,0 +1,231 @@
+TAP version 13
+# Subtest: debounce before switchMap permits an old result during the next silence wait
+ok 1 - debounce before switchMap permits an old result during the next silence wait
+  ---
+  duration_ms: 3.235424
+  type: 'test'
+  ...
+# Subtest: the immediate policy closes the old request when raw input arrives
+not ok 2 - the immediate policy closes the old request when raw input arrives
+  ---
+  duration_ms: 1.53365
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:32:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+    +     at: 5,
+    +     id: 1,
+    +     value: 1
+    +   },
+    +   {
+          at: 8,
+          id: 2,
+          value: 2
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      at: 8
+      id: 2
+      value: 2
+  actual:
+    0:
+      at: 5
+      id: 1
+      value: 1
+    1:
+      at: 8
+      id: 2
+      value: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:34:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: replay defaults only an absent result payload and preserves null or undefined
+ok 3 - replay defaults only an absent result payload and preserves null or undefined
+  ---
+  duration_ms: 0.491664
+  type: 'test'
+  ...
+# Subtest: source completion flushes debounceTime but lets the selected timer finish
+not ok 4 - source completion flushes debounceTime but lets the selected timer finish
+  ---
+  duration_ms: 0.56882
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:61:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 3
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 3
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:70:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: queries after source completion do not invalidate the final accepted request
+not ok 5 - queries after source completion do not invalidate the final accepted request
+  ---
+  duration_ms: 0.817076
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:79:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+          id: 1,
+    +     start: 1,
+    -     start: 3,
+          stop: 4,
+          stopReason: 'complete'
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      id: 1
+      start: 3
+      stop: 4
+      stopReason: 'complete'
+  actual:
+    0:
+      id: 1
+      start: 1
+      stop: 4
+      stopReason: 'complete'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:90:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+# Subtest: downstream cancellation closes the request and suppresses later work
+ok 6 - downstream cancellation closes the request and suppresses later work
+  ---
+  duration_ms: 0.375919
+  type: 'test'
+  ...
+# Subtest: downstream cancellation during the silence wait prevents a request
+ok 7 - downstream cancellation during the silence wait prevents a request
+  ---
+  duration_ms: 0.176667
+  type: 'test'
+  ...
+# Subtest: a cold source and request execute only after subscription and tear down
+ok 8 - a cold source and request execute only after subscription and tear down
+  ---
+  duration_ms: 0.236808
+  type: 'test'
+  ...
+# Subtest: source errors discard waiting input or close the active request
+ok 9 - source errors discard waiting input or close the active request
+  ---
+  duration_ms: 0.624405
+  type: 'test'
+  ...
+# Subtest: equal-time raw input and timer work follow their enqueue order
+not ok 10 - equal-time raw input and timer work follow their enqueue order
+  ---
+  duration_ms: 0.665927
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:189:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      [
+        {
+          at: 3,
+          id: 1,
+          type: 'start'
+        },
+        {
+    +     at: 6,
+    -     at: 3,
+          id: 1,
+          type: 'stop'
+        },
+        {
+          at: 6,
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      at: 3
+      type: 'start'
+      id: 1
+    1:
+      at: 3
+      type: 'stop'
+      id: 1
+    2:
+      at: 6
+      type: 'start'
+      id: 2
+  actual:
+    0:
+      at: 3
+      type: 'start'
+      id: 1
+    1:
+      at: 6
+      type: 'stop'
+      id: 1
+    2:
+      at: 6
+      type: 'start'
+      id: 2
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/skill-forward-test/tests/search-freshness.test.mjs:215:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+    Test.postRun (node:internal/test_runner/test:1542:19)
+    Test.run (node:internal/test_runner/test:1467:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 6
+# fail 4
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 134.639263
