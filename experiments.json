@@ -1,0 +1,9 @@
+[
+  {"id":"take-two","module":"experiments/01-take/Take.tla","config":"experiments/01-take/take-two.cfg","expect":"pass"},
+  {"id":"take-zero","module":"experiments/01-take/Take.tla","config":"experiments/01-take/take-zero.cfg","expect":"pass"},
+  {"id":"take-mutant","module":"experiments/01-take/Take.tla","config":"experiments/01-take/mutant-extra-value.cfg","expect":"violation","invariant":"QuotaBound"},
+  {"id":"search-structure","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/debounced-structure.cfg","expect":"pass"},
+  {"id":"search-debounced","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/debounced.cfg","expect":"violation","invariant":"FreshEmission"},
+  {"id":"search-immediate","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/immediate.cfg","expect":"pass"},
+  {"id":"search-delivery-witness","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/immediate-witness.cfg","expect":"violation","invariant":"NeverDelivers"}
+]

@@ -1,0 +1,37 @@
+{
+  "rxjs": {
+    "repository": "ReactiveX/rxjs",
+    "version": "7.8.2",
+    "commit": "e5351d02e225e275ac0e497c7b66eaa5f0c88791",
+    "files": ["src/internal/operators/take.ts", "src/internal/operators/debounceTime.ts", "src/internal/operators/switchMap.ts", "src/internal/observable/timer.ts"]
+  },
+  "rxjsFormalWay": {
+    "repository": "hansschenker/rxjs-formal-way",
+    "commit": "6ba40c5ba2c8b49b94139ce698b8605cf664a104",
+    "takeModel": "src/models/take.ts",
+    "takeModelBlob": "fa7eb716baa16d778d5cddde53634ae5af457900",
+    "relationship": "Read-only reference; this laboratory does not update or depend on the other repository."
+  },
+  "verificationWorkflows": {
+    "repository": "ericlitman/open-pstack",
+    "commit": "b4c5e3d63318308b7e11f26b2bc156e7793d834a",
+    "skills": {
+      "create-formal-verification-skill": {
+        "path": "plugins/pstack/skills/create-formal-verification-skill/SKILL.md",
+        "blob": "a950e12dcbc5ef6d5476b350cf3902c825d63b1a"
+      },
+      "maintain-formal-verification-skill": {
+        "path": "plugins/pstack/skills/maintain-formal-verification-skill/SKILL.md",
+        "blob": "5d2f7f2228a3b771ca5b03124fc265ddfc53c5fc"
+      }
+    },
+    "usage": "Reviewed as workflow guidance; no personal/global skill installation or upstream text copied."
+  },
+  "tlaTs": {
+    "repository": "aidenybai/tla-ts",
+    "reviewedCommit": "660addc663da3231d3df70d09fc4f1803bad97a6",
+    "npmVersion": "0.0.3",
+    "installation": "experiments/03-tla-ts/package-lock.json",
+    "relationship": "Second checker over the same TLA+ specifications; not a TypeScript-to-TLA+ translator."
+  }
+}
