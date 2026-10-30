@@ -1,0 +1,7 @@
+node_modules/
+.tools/
+artifacts/
+states/
+*_TTrace_*.tla
+*_TTrace_*.bin
+*_TTrace_*.cfg
