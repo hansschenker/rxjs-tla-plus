@@ -6,6 +6,7 @@ import { tmpdir } from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { root, verifyJar, digest, toolchain } from './setup-tlc.mjs';
 import { replaySearchTrace } from '../runtime/replay-search-trace.mjs';
+import { decodeLifecycleTrace, lifecycleReplaySettings, replayLifecycleEvidence, lifecycleEvidenceMarkdown } from './lifecycle-evidence.mjs';
 
 // This parser intentionally accepts only this experiment's scalar trace fields.
 export const decodeSearchTrace = (output) => {
@@ -67,6 +68,7 @@ export const checkModels = async () => {
   for (const path of ['model-results.json', 'search-counterexample.json', 'search-counterexample.md']) {
     await rm(resolve(artifacts, path), { force: true });
   }
+  await rm(resolve(artifacts, 'lifecycle'), { recursive: true, force: true });
   const reports = [];
   for (const item of cases) {
     const meta = await mkdtemp(resolve(tmpdir(), 'rxjs-tla-'));
@@ -126,6 +128,16 @@ export const checkModels = async () => {
         + '|---:|---|---|---|\n' + rows.join('\n') + '\n\n'
         + 'The baseline delivers request 1 after raw query 2. The immediate-cancellation candidate suppresses that delivery for the same external trace.\n');
     }
+    if (item.replay === 'lifecycle') {
+      const states = decodeLifecycleTrace(output);
+      const settings = lifecycleReplaySettings(await readFile(resolve(root, item.config), 'utf8'));
+      const evidence = replayLifecycleEvidence(states, settings);
+      await mkdir(resolve(artifacts, 'lifecycle'), { recursive: true });
+      await writeFile(resolve(artifacts, 'lifecycle', item.id + '.json'),
+        JSON.stringify({ id: item.id, invariant: item.invariant, purpose: item.purpose, ...evidence }, null, 2) + '\n');
+      await writeFile(resolve(artifacts, 'lifecycle', item.id + '.md'), lifecycleEvidenceMarkdown(item.id, evidence));
+      report.runtimeReplay = 'same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership';
+    }
     reports.push(report);
     console.log(item.id + ': ' + report.outcome + ' (' + report.distinctStates + ' distinct states)');
   }
@@ -133,6 +145,7 @@ export const checkModels = async () => {
   const files = [...new Set(cases.flatMap((item) => [item.module, item.config]).concat([
     'experiments.json', 'toolchain.json', 'package.json', 'package-lock.json',
     'runtime/search-pipelines.mjs', 'runtime/replay-search-trace.mjs',
+    'runtime/replay-lifecycle-trace.mjs', 'scripts/lifecycle-evidence.mjs',
     'scripts/check-models.mjs', 'scripts/setup-tlc.mjs',
   ]))];
   const inputs = await snapshotFiles(files);

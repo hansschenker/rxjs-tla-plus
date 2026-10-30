@@ -6,10 +6,14 @@ import { spawnSync } from 'node:child_process';
 import { check, parseConfig } from 'tla-ts';
 import { digest, root, verifyJar } from '../../scripts/setup-tlc.mjs';
 import { replaySearchTrace } from '../../runtime/replay-search-trace.mjs';
+import { normalizeLifecycleState, lifecycleReplaySettings, replayLifecycleEvidence } from '../../scripts/lifecycle-evidence.mjs';
 
+const resultsPath = join(root, 'artifacts/tla-ts-results.json');
+rmSync(resultsPath, { force: true });
 const jarPath = await verifyJar();
 const configurations = JSON.parse(readFileSync(join(root, 'experiments.json'), 'utf8'));
 const reports = [];
+const lifecycleReplays = [];
 let searchReplay;
 
 // This adapter consumes typed scalar state fields, not TLC's console text.
@@ -131,6 +135,12 @@ for (const expected of configurations) {
     searchReplay = replayStructuredSearchCounterexample(javascriptResult, config);
     report.runtimeReplay = 'structured trace reproduces output times, request starts, and stale delivery in RxJS';
   }
+  if (expected.replay === 'lifecycle') {
+    const states = javascriptResult.violation.trace.map(({ state }, index) => normalizeLifecycleState(state, index));
+    const evidence = replayLifecycleEvidence(states, lifecycleReplaySettings(config));
+    lifecycleReplays.push({ id: expected.id, invariant: expected.invariant, purpose: expected.purpose, ...evidence });
+    report.runtimeReplay = 'structured trace matches settled RxJS notifications, request ownership, and source/output lifecycle';
+  }
   reports.push(report);
   console.log(JSON.stringify(report));
 }
@@ -138,12 +148,21 @@ for (const expected of configurations) {
 assert.ok(searchReplay, 'the manifest must include the structured search-counterexample replay');
 const artifactsDirectory = join(root, 'artifacts');
 mkdirSync(artifactsDirectory, { recursive: true });
-writeFileSync(join(artifactsDirectory, 'tla-ts-results.json'), JSON.stringify({
+const inputPaths = [
+  'experiments.json', 'toolchain.json', 'package.json', 'package-lock.json',
+  'experiments/03-tla-ts/package.json', 'experiments/03-tla-ts/package-lock.json',
+  'experiments/03-tla-ts/compare.mjs', 'scripts/setup-tlc.mjs', 'scripts/lifecycle-evidence.mjs',
+  'runtime/search-pipelines.mjs', 'runtime/replay-search-trace.mjs', 'runtime/replay-lifecycle-trace.mjs',
+];
+writeFileSync(resultsPath, JSON.stringify({
   recordedAt: new Date().toISOString(),
   tlaTsVersion: '0.0.3',
   node: process.version,
+  inputs: Object.fromEntries(inputPaths.map(path => [path, digest(readFileSync(join(root, path)))])),
   reports,
   searchReplay,
+  lifecycleReplays,
 }, null, 2) + '\n');
 console.log(`All ${reports.length} unchanged manifest cases agree between tla-ts 0.0.3 and TLC.`);
 console.log('The structured FreshEmission counterexample reproduces stale delivery in real RxJS.');
+console.log(`${lifecycleReplays.length} structured lifecycle traces match real RxJS reactions.`);

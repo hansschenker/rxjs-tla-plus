@@ -1,9 +1,134 @@
 [
-  {"id":"take-two","module":"experiments/01-take/Take.tla","config":"experiments/01-take/take-two.cfg","expect":"pass"},
-  {"id":"take-zero","module":"experiments/01-take/Take.tla","config":"experiments/01-take/take-zero.cfg","expect":"pass"},
-  {"id":"take-mutant","module":"experiments/01-take/Take.tla","config":"experiments/01-take/mutant-extra-value.cfg","expect":"violation","invariant":"QuotaBound"},
-  {"id":"search-structure","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/debounced-structure.cfg","expect":"pass"},
-  {"id":"search-debounced","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/debounced.cfg","expect":"violation","invariant":"FreshEmission"},
-  {"id":"search-immediate","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/immediate.cfg","expect":"pass"},
-  {"id":"search-delivery-witness","module":"experiments/02-search-freshness/SearchFreshness.tla","config":"experiments/02-search-freshness/immediate-witness.cfg","expect":"violation","invariant":"NeverDelivers"}
+  {
+    "id": "take-two",
+    "module": "experiments/01-take/Take.tla",
+    "config": "experiments/01-take/take-two.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "take-zero",
+    "module": "experiments/01-take/Take.tla",
+    "config": "experiments/01-take/take-zero.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "take-mutant",
+    "module": "experiments/01-take/Take.tla",
+    "config": "experiments/01-take/mutant-extra-value.cfg",
+    "expect": "violation",
+    "invariant": "QuotaBound"
+  },
+  {
+    "id": "search-structure",
+    "module": "experiments/02-search-freshness/SearchFreshness.tla",
+    "config": "experiments/02-search-freshness/debounced-structure.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "search-debounced",
+    "module": "experiments/02-search-freshness/SearchFreshness.tla",
+    "config": "experiments/02-search-freshness/debounced.cfg",
+    "expect": "violation",
+    "invariant": "FreshEmission"
+  },
+  {
+    "id": "search-immediate",
+    "module": "experiments/02-search-freshness/SearchFreshness.tla",
+    "config": "experiments/02-search-freshness/immediate.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "search-delivery-witness",
+    "module": "experiments/02-search-freshness/SearchFreshness.tla",
+    "config": "experiments/02-search-freshness/immediate-witness.cfg",
+    "expect": "violation",
+    "invariant": "NeverDelivers"
+  },
+  {
+    "id": "lifecycle-debounced-external",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/debounced-external.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "lifecycle-debounced-timer",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/debounced-timer.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "lifecycle-immediate-external",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/immediate-external.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "lifecycle-immediate-timer",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/immediate-timer.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "lifecycle-debounced-freshness",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/debounced-freshness.cfg",
+    "expect": "violation",
+    "invariant": "FreshEmission",
+    "purpose": "counterexample",
+    "replay": "lifecycle"
+  },
+  {
+    "id": "lifecycle-completion-flush",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/completion-flush-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoCompletionFlush",
+    "purpose": "reachability-witness",
+    "replay": "lifecycle"
+  },
+  {
+    "id": "lifecycle-completion-wait",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/completion-wait-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoDeferredCompletion",
+    "purpose": "reachability-witness",
+    "replay": "lifecycle"
+  },
+  {
+    "id": "lifecycle-source-error",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/source-error-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoSourceErrorDiscard",
+    "purpose": "reachability-witness",
+    "replay": "lifecycle"
+  },
+  {
+    "id": "lifecycle-inner-error",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/inner-error-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoInnerError",
+    "purpose": "reachability-witness",
+    "replay": "lifecycle"
+  },
+  {
+    "id": "lifecycle-boundary",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/boundary-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoBoundaryStart",
+    "purpose": "reachability-witness",
+    "replay": "lifecycle"
+  },
+  {
+    "id": "lifecycle-result-completion",
+    "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+    "config": "experiments/04-search-lifecycle/result-completion-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoResultCompletion",
+    "purpose": "reachability-witness",
+    "replay": "lifecycle"
+  }
 ]

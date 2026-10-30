@@ -3,9 +3,9 @@
 ## Intuition
 
 The operator description and the property should stay the same when we try a
-different checker. This experiment reads all seven cases from the root
-`experiments.json` and gives the existing `Take.tla` and `SearchFreshness.tla`
-models and their configurations to both the official TLC checker and the
+different checker. This experiment reads all 18 cases from the root
+`experiments.json` and gives the existing `Take.tla`, `SearchFreshness.tla` and
+`SearchLifecycle.tla` models and their configurations to both the official TLC checker and the
 JavaScript package `tla-ts`. It compares their results without copying or
 translating the models.
 
@@ -25,8 +25,8 @@ model/code correspondence limits apply to both checkers.
 
 The inspected upstream source documents safety and temporal-property checking,
 including weak and strong fairness, and contains liveness tests compared with TLC
-verdicts. Those capabilities are outside this pilot's validation: our seven cases
-check only the existing safety models. The proof command can generate obligations
+verdicts. Those capabilities are outside this laboratory's current validation:
+the 18 configurations check safety properties and reachability witnesses. The proof command can generate obligations
 or invoke an independently installed `tlapm`; the package does not include its
 own theorem prover.
 
@@ -84,19 +84,22 @@ metadata directory and a 30-second timeout.
 The comparison passes only if:
 
 1. Every case has the verdict declared in the shared experiment manifest.
-2. Both checkers identify each negative case's exact invariant: `QuotaBound`,
-   `FreshEmission`, or `NeverDelivers`.
+2. Both checkers identify each negative case's exact invariant declared in the
+   manifest, including the deliberately false lifecycle witness invariants.
 3. Generated-state counts, distinct-state counts, and search depths agree for
    every configuration.
 4. The structured `FreshEmission` trace reproduces request starts, output times,
    and the stale-result violation in real RxJS; the immediate-cancellation
    candidate suppresses the stale delivery for the same external trace.
+5. Seven additional structured lifecycle traces match real RxJS request starts,
+   stops and stop reasons, emitted values, terminal notifications, and final
+   settled source/destination lifecycle and ownership.
 
 Unexpected exceptions, other invariant failures, and count differences fail the
 comparison. A deliberate mutation is an expected negative case, not an error to
 hide.
 
-## Recorded evidence: 2026-10-30
+## Initial recorded evidence: seven configurations
 
 Both checkers agreed on all seven unchanged cases:
 
@@ -111,11 +114,9 @@ Both checkers agreed on all seven unchanged cases:
 | `search-delivery-witness` | `NeverDelivers` violation | 107 | 78 | 8 |
 
 The official checker exited with `0` for positive cases and `12` for the named
-negative cases. The comparison script exited with `0` because all expected
-outcomes, counts, and replay assertions agreed. Fresh runs write
-`artifacts/tla-ts-results.json`, including model/configuration SHA-256 hashes and
-the structured counterexample with its runtime replay. The checked-in evidence
-is preserved separately in
+negative cases. The initial comparison script exited with `0` because all expected
+outcomes, counts, and replay assertions agreed. This seven-case snapshot remains
+historical evidence in
 [`verification/evidence/tla-ts-results.json`](../../verification/evidence/tla-ts-results.json).
 
 ### Structured counterexample replay
@@ -141,16 +142,77 @@ request 1 at query 2 and suppresses its attempted result. This trace demonstrate
 the chosen freshness property under the experiment 02 scope; it is not a claim
 that the baseline violates RxJS's `switchMap` contract.
 
-This is evidence of agreement on two small RxJS-related safety models. It is not a
+This initial run is evidence of agreement on two small RxJS-related safety models. It is not a
 benchmark, a proof of general TLC compatibility, a liveness validation, or proof
 that the model describes every implementation behavior. No claim about the
 upstream project's advertised performance is inferred from these runs.
+
+## Lifecycle extension: 18 configurations and seven additional replays
+
+[Experiment 04](../04-search-lifecycle/README.md) adds eleven configurations while
+preserving the original seven. Four complete safety explorations combine the two
+pipeline policies with `external-first` and `timer-first` frame profiles. The
+remaining seven configurations produce one freshness counterexample and six
+reachability witnesses:
+
+| Structured lifecycle trace | Interpretation |
+|---|---|
+| `FreshEmission` | Debounced selection can still deliver an old result after a newer raw query |
+| `NoCompletionFlush` | Completing the source flushes a pending debounced query into a request |
+| `NoDeferredCompletion` | Immediate selection can retain its final timer after source completion |
+| `NoSourceErrorDiscard` | A source error discards pending input without flushing it |
+| `NoInnerError` | An active request error propagates and releases owned work |
+| `NoBoundaryStart` | A request can start before a new query arrives at the same integer frame |
+| `NoResultCompletion` | An immediate-policy result can emit and complete the destination after source completion |
+
+The six deliberately false witness invariants reveal reachable behavior; their
+violations do not classify the implementation as defective. The freshness
+counterexample violates the separately stated latest-raw-query requirement.
+The corresponding positive configurations preserve that requirement for the
+immediate policy under both profiles.
+
+The lifecycle adapter keeps source completion separate from destination
+completion. A final timer/request may continue after the source has ended. A
+source error instead discards pending input and closes an active request; an
+active request error also unsubscribes a still-open source. Cancellation emits no
+terminal notification. At a shared deadline, external-first can prevent a
+request subscription entirely, while timer-first can permit a transient
+subscription that is canceled within the same frame. Comparing output values
+alone would miss that resource distinction.
+
+The comparison maps structured states through the shared lifecycle evidence
+adapter into [`replayLifecycleTrace`](../../runtime/replay-lifecycle-trace.mjs).
+It checks actual RxJS request starts/stops and reasons, notifications, freshness,
+source/destination state, and settled subscription ownership. The original
+experiment 02 replay is retained. In this `tla-ts` comparison, lifecycle replay
+does not parse the official checker's console trace; console parsing remains necessary for the differential
+comparison of TLC's reported verdicts and state counts.
+
+Fresh runs write `artifacts/tla-ts-results.json`, including configuration/model
+hashes, the original freshness replay, and the seven lifecycle replays. The
+expanded archived run is recorded in the
+[lifecycle-extension evidence](../../verification/evidence/lifecycle-extension/README.md),
+with its [checker results](../../verification/evidence/lifecycle-extension/tla-ts-results.json),
+[official model results](../../verification/evidence/lifecycle-extension/model-results.json),
+and [verification log](../../verification/evidence/lifecycle-extension/verification.log).
+Use that snapshot's hashes and executed outcomes when assessing the current
+extension; the earlier seven-case table remains an initial result.
+
+Experiment 04 fixes delay 2, integer time 0 through 4 and at most two query
+notifications. Its two profiles group external actions before or after due timer
+work. It excludes synchronous/reentrant request emissions, multi-value or
+empty-completing request protocols, fractional/zero-delay scheduling, arbitrary
+within-frame interleavings, sharing and liveness. Additional runtime fixtures do
+not enlarge these model bounds. Agreement between the checkers and the selected
+replays remains scoped evidence, not a proof of general checker equivalence or
+of all RxJS implementation behavior.
 
 ## Use in this laboratory
 
 Retain official TLC as the reference checker while using `tla-ts` as an optional
 second implementation and a route to structured JavaScript trace tools. This
-experiment adds one explicit adapter for the search model's counterexample.
+experiment retains the initial search counterexample adapter and extends the
+structured interface to lifecycle and subscription-ownership traces.
 Future browser presentation, BDD rendering, or four-lane diagrams could consume
 the same structured states. No general TypeScript model compiler or automatic
 RxJS verifier is introduced here.

@@ -3,7 +3,7 @@
     "repository": "ReactiveX/rxjs",
     "version": "7.8.2",
     "commit": "e5351d02e225e275ac0e497c7b66eaa5f0c88791",
-    "files": ["src/internal/operators/take.ts", "src/internal/operators/debounceTime.ts", "src/internal/operators/switchMap.ts", "src/internal/observable/timer.ts"]
+    "files": ["src/internal/operators/take.ts", "src/internal/operators/debounceTime.ts", "src/internal/operators/switchMap.ts", "src/internal/observable/timer.ts", "src/internal/scheduler/VirtualTimeScheduler.ts", "src/internal/operators/OperatorSubscriber.ts", "src/internal/Subscriber.ts"]
   },
   "rxjsFormalWay": {
     "repository": "hansschenker/rxjs-formal-way",

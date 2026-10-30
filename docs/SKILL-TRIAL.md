@@ -39,6 +39,16 @@ The additional [checker comparison](../experiments/03-tla-ts/README.md) feeds th
 
 This provides concrete support for using a JavaScript API to surface counterexamples and integrate with future trace tooling. It provides no automatic translation from canonical TypeScript models, no proof of arbitrary RxJS code, and no universal equivalence result for the checkers. Published npm bytes and the inspected upstream Git commit are pinned separately because npm did not supply a `gitHead` field.
 
+## Maintenance continuation: lifecycle and timer boundaries
+
+Experiment 04 extends the laboratory with a separate lifecycle model. The original models and pipeline implementations are preserved. This is an explicit scope extension: source completion/errors, active inner errors, cancellation and two concrete same-frame ordering profiles now have their own model, runtime adapter and correspondence checks.
+
+The existing 22-test baseline was run successfully before editing. The source guard then correctly required review of the added/changed covered files. The new model distinguishes source and destination lifetime; positive checks cover both policies and both ordering profiles. Six deliberately false properties witness lifecycle behavior, and a seventh negative case retains the baseline's unchanged freshness requirement. All seven actual traces are replayed against RxJS by both the official-TLC adapter and the structured `tla-ts` adapter.
+
+The expanded suite contains 40 named tests. One new correspondence test deliberately replays a completion-flush trace with the waiting implementation and requires the gate to reject the mismatch. The original controlled cancellation mutation remains part of the final workflow. An independent reviewer inspected the model, adapter and scheduler argument and ran 32 separate RxJS scenarios; its feedback strengthened the comparison with actual source-owned and destination-closed flags.
+
+The maintenance classification is **verification updated**: the new scope is modeled and reviewed, with no change to the two pipeline functions. The final source pin and [extension evidence](../verification/evidence/lifecycle-extension/README.md) record the executed results and boundaries. A finite-horizon check and selected trace replays still do not establish universal model/implementation refinement.
+
 ## What can move into `rxjs-formal-way` later
 
 The reusable candidates are the explicit event/ownership vocabulary, model-to-code mapping tables, exact-status checking, replay interface, negative controls, and a maintenance workflow with a reviewed source pin. A generated TLA+ exporter or a mandatory verification dependency needs further experiments. Neither is introduced into the canonical repository by this work.
