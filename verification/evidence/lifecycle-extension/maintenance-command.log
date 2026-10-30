@@ -1,0 +1,7 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify:mutation
+> node scripts/check-mutation.mjs
+
+Coverage in sync with reviewed source 3704861ad442fb6d24f805f2e6e1cf4642f24431 (43 files).
+Maintenance drill: drift detected; stale model passed; runtime rejected regression; aligned model found FreshEmission.

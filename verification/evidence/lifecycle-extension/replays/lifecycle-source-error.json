@@ -1,0 +1,161 @@
+{
+  "id": "lifecycle-source-error",
+  "invariant": "NoSourceErrorDiscard",
+  "purpose": "reachability-witness",
+  "policy": "immediate",
+  "timerOrder": "external-first",
+  "delay": 2,
+  "horizon": 0,
+  "states": [
+    {
+      "step": 1,
+      "now": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Init",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 2,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 1,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Query",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 3,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "errored",
+      "destinationState": "errored",
+      "lastEvent": "SourceError",
+      "lastStopReason": "none",
+      "lastTerminal": "E",
+      "badEmission": false
+    }
+  ],
+  "events": [
+    {
+      "type": "Query",
+      "at": 0,
+      "id": 1
+    },
+    {
+      "type": "SourceError",
+      "at": 0,
+      "id": 0
+    }
+  ],
+  "expected": {
+    "starts": [],
+    "stops": [],
+    "notifications": [
+      {
+        "at": 0,
+        "kind": "E"
+      }
+    ],
+    "violations": [],
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "sourceState": "errored",
+    "destinationState": "errored",
+    "sourceOwned": false,
+    "destinationClosed": true,
+    "latestQueryId": 1,
+    "activeRequests": []
+  },
+  "runtime": {
+    "policy": "immediate",
+    "timerOrder": "external-first",
+    "delay": 2,
+    "horizon": 0,
+    "latestQueryId": 1,
+    "sourceState": "errored",
+    "destinationState": "errored",
+    "sourceOwned": false,
+    "sourceLifetime": {
+      "start": 0,
+      "stop": 0,
+      "stopReason": "error"
+    },
+    "destinationClosed": true,
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "outputs": [],
+    "notifications": [
+      {
+        "at": 0,
+        "kind": "E",
+        "error": "source failed"
+      }
+    ],
+    "violations": [],
+    "log": [
+      {
+        "at": 0,
+        "type": "SourceSubscribe"
+      },
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 0,
+        "type": "SourceError",
+        "error": "source failed"
+      },
+      {
+        "at": 0,
+        "type": "Error",
+        "error": "source failed"
+      },
+      {
+        "at": 0,
+        "type": "SourceStop",
+        "reason": "error"
+      }
+    ],
+    "requests": []
+  }
+}

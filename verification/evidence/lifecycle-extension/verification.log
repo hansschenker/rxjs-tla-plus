@@ -1,0 +1,87 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify
+> npm run check:coverage && npm run verify:models && npm test
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 check:coverage
+> node scripts/check-coverage.mjs
+
+Coverage in sync with reviewed source 3704861ad442fb6d24f805f2e6e1cf4642f24431 (43 files).
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 verify:models
+> node scripts/check-models.mjs
+
+take-two: model-checked (17 distinct states)
+take-zero: model-checked (2 distinct states)
+take-mutant: expected-invariant-violation (18 distinct states)
+search-structure: model-checked (750 distinct states)
+search-debounced: expected-invariant-violation (101 distinct states)
+search-immediate: model-checked (619 distinct states)
+search-delivery-witness: expected-invariant-violation (78 distinct states)
+lifecycle-debounced-external: model-checked (829 distinct states)
+lifecycle-debounced-timer: model-checked (1323 distinct states)
+lifecycle-immediate-external: model-checked (768 distinct states)
+lifecycle-immediate-timer: model-checked (1126 distinct states)
+lifecycle-debounced-freshness: expected-invariant-violation (297 distinct states)
+lifecycle-completion-flush: expected-invariant-violation (8 distinct states)
+lifecycle-completion-wait: expected-invariant-violation (8 distinct states)
+lifecycle-source-error: expected-invariant-violation (9 distinct states)
+lifecycle-inner-error: expected-invariant-violation (155 distinct states)
+lifecycle-boundary: expected-invariant-violation (151 distinct states)
+lifecycle-result-completion: expected-invariant-violation (180 distinct states)
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 test
+> node --test tests/*.test.mjs
+
+✔ an expected counterexample requires its named invariant and exit 12 (1.362607ms)
+✔ a successful check requires both a zero exit and completion evidence (0.204529ms)
+✔ the trace decoder preserves whole states and rejects incomplete evidence (0.749949ms)
+✔ lifecycle trace adapters reject missing ownership observations (6.656435ms)
+✔ lifecycle replay rejects an unknown scheduler profile instead of assuming one (0.646568ms)
+✔ the correspondence gate rejects replaying a completion-flush trace with the waiting policy (5.822673ms)
+✔ debounce before switchMap permits an old result during the next silence wait (5.734064ms)
+✔ the immediate policy closes the old request when raw input arrives (0.976521ms)
+✔ replay defaults only an absent result payload and preserves null or undefined (0.823857ms)
+✔ source completion flushes debounceTime but lets the selected timer finish (0.848834ms)
+✔ queries after source completion do not invalidate the final accepted request (0.594411ms)
+✔ downstream cancellation closes the request and suppresses later work (0.337705ms)
+✔ downstream cancellation during the silence wait prevents a request (0.254824ms)
+✔ a cold source and request execute only after subscription and tear down (0.326178ms)
+✔ source errors discard waiting input or close the active request (0.88038ms)
+✔ equal-time raw input and timer work follow their enqueue order (0.726395ms)
+✔ lifecycle replay completes an empty source without creating work (7.429178ms)
+✔ completion flushes the pending debounced value but preserves the immediate timer (4.903286ms)
+✔ completion while a request is active waits for that request to finish (4.703493ms)
+✔ a completion flush replaces an old baseline request with the latest pending query (0.419685ms)
+✔ source error discards pending input without a completion flush (1.543362ms)
+✔ source error tears down an active request and suppresses its later result (4.18973ms)
+✔ an active inner error terminates both pipelines and releases their source (0.618046ms)
+✔ an old inner error terminates a baseline pending wait but is ignored after immediate cancellation (0.750931ms)
+✔ cancellation releases waiting or active work without a terminal notification (5.681576ms)
+✔ late source and request attempts cannot alter the terminal outcome or freshness oracle (2.763911ms)
+✔ timer boundary ordering controls whether the superseded request starts at all (0.619087ms)
+✔ error at a timer deadline either prevents a request or tears down a transient request (0.494215ms)
+✔ the ordering profile also holds after debounceTime rearms an early timer wakeup (1.927619ms)
+✔ same-frame result attempts occur before or after the request subscription as configured (2.179915ms)
+✔ lifecycle replay preserves explicit payloads and rejects unsupported scheduling profiles (0.943759ms)
+✔ take describes a lazy dataflow until subscribed (4.109122ms)
+✔ take(0) completes without acquiring the source (1.325904ms)
+✔ take(2) forwards the second value, completes, and releases the source (0.475546ms)
+✔ source completion before the quota completes with the existing prefix (0.273541ms)
+✔ source error preserves the error object and never adds complete (0.721397ms)
+✔ downstream cancellation releases the source without a terminal notification (0.496318ms)
+✔ two subscriptions have independent take counters and source lifetimes (0.260382ms)
+✔ quota and lifecycle checks hold for all 312 bounded runtime histories (7.278571ms)
+✔ the runtime quota oracle rejects the deliberate take(3) mutant for quota 2 (2.972396ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 226.8177

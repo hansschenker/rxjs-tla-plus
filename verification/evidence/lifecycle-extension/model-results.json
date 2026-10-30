@@ -1,0 +1,394 @@
+{
+  "status": "completed",
+  "recordedAt": "2026-10-30T08:01:31.400Z",
+  "sourceCommit": "3704861ad442fb6d24f805f2e6e1cf4642f24431",
+  "headCommit": "3704861ad442fb6d24f805f2e6e1cf4642f24431",
+  "inputFilesMatchHead": true,
+  "mode": "TLC breadth-first exploration; finite domains and search horizon; no simulation",
+  "toolchain": {
+    "tlaTools": {
+      "release": "v1.7.4",
+      "tlcVersion": "2.19",
+      "url": "https://github.com/tlaplus/tlaplus/releases/download/v1.7.4/tla2tools.jar",
+      "sha256": "936a262061c914694dfd669a543be24573c45d5aa0ff20a8b96b23d01e050e88",
+      "file": ".tools/tla2tools-1.7.4.jar"
+    },
+    "rxjs": "7.8.2",
+    "nodeMinimum": 22,
+    "javaMinimum": 11
+  },
+  "node": "v24.22.1",
+  "inputs": {
+    "experiments/01-take/Take.tla": "a44f76b7d5f300a396dea3f472c1b1ad5480f8c36edaadc96bd26f9fee101336",
+    "experiments/01-take/take-two.cfg": "f460bfc5a94315c3986a5b354bf27d641e9a7874713f3647d56704c3febce97d",
+    "experiments/01-take/take-zero.cfg": "88ac70aa264b46829f52180fea9acff64c727095315dee089655eec129d1045f",
+    "experiments/01-take/mutant-extra-value.cfg": "27c67473a9ec613077f0aaa3616c883beafca54fac7a0a7839cd40041a126b8c",
+    "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+    "experiments/02-search-freshness/debounced-structure.cfg": "adc66d93a9c086e584ae7c7575e45e2c3458c921092d6612201c967083d34f67",
+    "experiments/02-search-freshness/debounced.cfg": "94d019b12de8c9f27693cedbc4bb51e30a50652ddeae63985909c0b9ccbe8918",
+    "experiments/02-search-freshness/immediate.cfg": "b39b1c16ceb09c65a6b939d5f318bc74a7d0d2b53a0d70ac8aecc977041a3b1c",
+    "experiments/02-search-freshness/immediate-witness.cfg": "c4f2f78324ee078ee9669efbad01ab1a212de841889196bfc633e46fb795a00c",
+    "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+    "experiments/04-search-lifecycle/debounced-external.cfg": "3f9c582add178497d7905f71bface0a012faed4e817753ab7ab995962ccf7da0",
+    "experiments/04-search-lifecycle/debounced-timer.cfg": "de66ff503212e6bab9f07feba2c9bb0139ea54c50a2b2f9a5018928091a1b4e9",
+    "experiments/04-search-lifecycle/immediate-external.cfg": "17f03162f8d6231bc32d5ca20bf0cef853c73507c70c46ca3a1f8546c42151e7",
+    "experiments/04-search-lifecycle/immediate-timer.cfg": "50901186463eb62132dc6cfe7d8137471efed17747c6773fce6ee4c8c93c97ff",
+    "experiments/04-search-lifecycle/debounced-freshness.cfg": "b1c9c8cf04f1ab7b9675c1ade608d5920634703e18871de0d89ff8233510b4f3",
+    "experiments/04-search-lifecycle/completion-flush-witness.cfg": "693f16f75fe3f657cb5deb92825da991f28a99ec67c21086b05c069b174bf174",
+    "experiments/04-search-lifecycle/completion-wait-witness.cfg": "e44c35a35ee2068a1492ad48bdbb98b232ea24dd21eb4a99a9802cc16e16a3a9",
+    "experiments/04-search-lifecycle/source-error-witness.cfg": "43c024e4b66bc8fc51d0a826714c14fae312456b452d980489731269f4c6b0c9",
+    "experiments/04-search-lifecycle/inner-error-witness.cfg": "3d57f4d0cce946d997089fe334ae6be8d1d3970f35c7f75c0f5e22bf40bee3c7",
+    "experiments/04-search-lifecycle/boundary-witness.cfg": "6081319138c68a7ccb432a93012de29f4e05ba7589680e22bcb0720f6cfe69f2",
+    "experiments/04-search-lifecycle/result-completion-witness.cfg": "73fedec69f60bc15750664bcfe1423bf683bdb69ffd15c21256b548e5ec46de3",
+    "experiments.json": "e4b3a0a59c70901fcd06a3b2159cae4e2da1f75bc74561f00025d75731230b8f",
+    "toolchain.json": "dce1c15359881326da2e01ef97ee0b9159c4d0cc013a461f73961af013bbad44",
+    "package.json": "73c657697c5c9945a43159573a44ea5aa7109372b84bd566ac20afdcc0d2bee2",
+    "package-lock.json": "fdb039a833f164fd938aaa48598598ea85e98a2b682b28f52e1f10b6a3ad83b2",
+    "runtime/search-pipelines.mjs": "11cd3b7edc9a320bf82a452efe0d1098ebebe2b200336873186f20fac43c896d",
+    "runtime/replay-search-trace.mjs": "36d523dc63130bd9a22ed6c151002b2d1ee73387531f6f7e7b63fa9cbb6611f9",
+    "runtime/replay-lifecycle-trace.mjs": "775542f2d534e9db517a77f24f003f38ff5375697d031a49b1c5ed9c6bbecb55",
+    "scripts/lifecycle-evidence.mjs": "525110f1763ec921d87e8da532b12b6b07d80c9999c341eb6e4db1e5dacc3390",
+    "scripts/check-models.mjs": "88ffc587a30b62af749baa1d27e8b4b054d49319d933fa8690cec42c37354b0c",
+    "scripts/setup-tlc.mjs": "2382f76aae1afd5ffcde50d0be0c399a237ae8652b973a179070315fce07f4d1"
+  },
+  "reports": [
+    {
+      "id": "take-two",
+      "module": "experiments/01-take/Take.tla",
+      "config": "experiments/01-take/take-two.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 833,
+      "generatedStates": 30,
+      "distinctStates": 17,
+      "statesLeft": 0,
+      "logSha256": "0611bb81fa0a0f7e91ca1d9ccbfc474e4e84b5efb03222ca440bfd64f23d2f3d",
+      "inputs": {
+        "experiments/01-take/Take.tla": "a44f76b7d5f300a396dea3f472c1b1ad5480f8c36edaadc96bd26f9fee101336",
+        "experiments/01-take/take-two.cfg": "f460bfc5a94315c3986a5b354bf27d641e9a7874713f3647d56704c3febce97d"
+      }
+    },
+    {
+      "id": "take-zero",
+      "module": "experiments/01-take/Take.tla",
+      "config": "experiments/01-take/take-zero.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 843,
+      "generatedStates": 3,
+      "distinctStates": 2,
+      "statesLeft": 0,
+      "logSha256": "a122639c785128233727caf1d82e0d3e32c686dda8464167c5e27e2d4c23f497",
+      "inputs": {
+        "experiments/01-take/Take.tla": "a44f76b7d5f300a396dea3f472c1b1ad5480f8c36edaadc96bd26f9fee101336",
+        "experiments/01-take/take-zero.cfg": "88ac70aa264b46829f52180fea9acff64c727095315dee089655eec129d1045f"
+      }
+    },
+    {
+      "id": "take-mutant",
+      "module": "experiments/01-take/Take.tla",
+      "config": "experiments/01-take/mutant-extra-value.cfg",
+      "expect": "violation",
+      "invariant": "QuotaBound",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 859,
+      "generatedStates": 21,
+      "distinctStates": 18,
+      "statesLeft": 9,
+      "logSha256": "f3b59aa7af5b27b2fb4e0d721b7504bac536f2ac21a3878a6f2aaaa84f8c3111",
+      "inputs": {
+        "experiments/01-take/Take.tla": "a44f76b7d5f300a396dea3f472c1b1ad5480f8c36edaadc96bd26f9fee101336",
+        "experiments/01-take/mutant-extra-value.cfg": "27c67473a9ec613077f0aaa3616c883beafca54fac7a0a7839cd40041a126b8c"
+      }
+    },
+    {
+      "id": "search-structure",
+      "module": "experiments/02-search-freshness/SearchFreshness.tla",
+      "config": "experiments/02-search-freshness/debounced-structure.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 889,
+      "generatedStates": 1315,
+      "distinctStates": 750,
+      "statesLeft": 0,
+      "logSha256": "2e83838eeee8aa285b73f3069c509a69fd5ee05ac47ee09aa3bf4e77a4547be9",
+      "inputs": {
+        "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+        "experiments/02-search-freshness/debounced-structure.cfg": "adc66d93a9c086e584ae7c7575e45e2c3458c921092d6612201c967083d34f67"
+      }
+    },
+    {
+      "id": "search-debounced",
+      "module": "experiments/02-search-freshness/SearchFreshness.tla",
+      "config": "experiments/02-search-freshness/debounced.cfg",
+      "expect": "violation",
+      "invariant": "FreshEmission",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 870,
+      "generatedStates": 139,
+      "distinctStates": 101,
+      "statesLeft": 23,
+      "logSha256": "8859d996355f31667abc4da2cece899f1a2757ba20c7fa0c700798f302ea6c53",
+      "inputs": {
+        "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+        "experiments/02-search-freshness/debounced.cfg": "94d019b12de8c9f27693cedbc4bb51e30a50652ddeae63985909c0b9ccbe8918"
+      },
+      "runtimeReplay": "same output times, request IDs, request start times, and freshness violation"
+    },
+    {
+      "id": "search-immediate",
+      "module": "experiments/02-search-freshness/SearchFreshness.tla",
+      "config": "experiments/02-search-freshness/immediate.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 919,
+      "generatedStates": 1054,
+      "distinctStates": 619,
+      "statesLeft": 0,
+      "logSha256": "c02f2aede5c3f5f1fc70fe89e3e6b90c0daa495616ae675d0ae2798f915508e8",
+      "inputs": {
+        "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+        "experiments/02-search-freshness/immediate.cfg": "b39b1c16ceb09c65a6b939d5f318bc74a7d0d2b53a0d70ac8aecc977041a3b1c"
+      }
+    },
+    {
+      "id": "search-delivery-witness",
+      "module": "experiments/02-search-freshness/SearchFreshness.tla",
+      "config": "experiments/02-search-freshness/immediate-witness.cfg",
+      "expect": "violation",
+      "invariant": "NeverDelivers",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 861,
+      "generatedStates": 107,
+      "distinctStates": 78,
+      "statesLeft": 18,
+      "logSha256": "c8b1f524bffb62400b3b2c18715fa2b3bbe7d3970dfcebb365b803a8fe964efb",
+      "inputs": {
+        "experiments/02-search-freshness/SearchFreshness.tla": "2886a2b9e129266e5ddea3f327aa41f76b7280a1e3654b088f2eccf9202bf7a2",
+        "experiments/02-search-freshness/immediate-witness.cfg": "c4f2f78324ee078ee9669efbad01ab1a212de841889196bfc633e46fb795a00c"
+      }
+    },
+    {
+      "id": "lifecycle-debounced-external",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/debounced-external.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 937,
+      "generatedStates": 1156,
+      "distinctStates": 829,
+      "statesLeft": 0,
+      "logSha256": "58edd7dbc5b115c7cf8aa485086be04018db3dfd44fb14ac48f072f78bc4418c",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/debounced-external.cfg": "3f9c582add178497d7905f71bface0a012faed4e817753ab7ab995962ccf7da0"
+      }
+    },
+    {
+      "id": "lifecycle-debounced-timer",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/debounced-timer.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 984,
+      "generatedStates": 1884,
+      "distinctStates": 1323,
+      "statesLeft": 0,
+      "logSha256": "95b7ffbb974814f0ea65f70aba7c7df92b03342c106487fa334d01432a856b26",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/debounced-timer.cfg": "de66ff503212e6bab9f07feba2c9bb0139ea54c50a2b2f9a5018928091a1b4e9"
+      }
+    },
+    {
+      "id": "lifecycle-immediate-external",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/immediate-external.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 963,
+      "generatedStates": 1048,
+      "distinctStates": 768,
+      "statesLeft": 0,
+      "logSha256": "c2a21654efb6afa3a748408817c142c6e2db37a177c63bca406ac2a267428922",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/immediate-external.cfg": "17f03162f8d6231bc32d5ca20bf0cef853c73507c70c46ca3a1f8546c42151e7"
+      }
+    },
+    {
+      "id": "lifecycle-immediate-timer",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/immediate-timer.cfg",
+      "expect": "pass",
+      "outcome": "model-checked",
+      "exitCode": 0,
+      "elapsedMs": 1012,
+      "generatedStates": 1561,
+      "distinctStates": 1126,
+      "statesLeft": 0,
+      "logSha256": "a696ed8ab59edb32d7e0e66c52e0898f6e369030e2208379ec7a8b8082665a44",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/immediate-timer.cfg": "50901186463eb62132dc6cfe7d8137471efed17747c6773fce6ee4c8c93c97ff"
+      }
+    },
+    {
+      "id": "lifecycle-debounced-freshness",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/debounced-freshness.cfg",
+      "expect": "violation",
+      "invariant": "FreshEmission",
+      "purpose": "counterexample",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 917,
+      "generatedStates": 392,
+      "distinctStates": 297,
+      "statesLeft": 37,
+      "logSha256": "bd6e07d57646fef0159c46fd32eb17089a796155d51be36dcd5ed310042c9082",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/debounced-freshness.cfg": "b1c9c8cf04f1ab7b9675c1ade608d5920634703e18871de0d89ff8233510b4f3"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    },
+    {
+      "id": "lifecycle-completion-flush",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/completion-flush-witness.cfg",
+      "expect": "violation",
+      "invariant": "NoCompletionFlush",
+      "purpose": "reachability-witness",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 878,
+      "generatedStates": 8,
+      "distinctStates": 8,
+      "statesLeft": 5,
+      "logSha256": "0dced23001f58f742ce284b2cb0f768346cb122143686df0cbc42a0251033455",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/completion-flush-witness.cfg": "693f16f75fe3f657cb5deb92825da991f28a99ec67c21086b05c069b174bf174"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    },
+    {
+      "id": "lifecycle-completion-wait",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/completion-wait-witness.cfg",
+      "expect": "violation",
+      "invariant": "NoDeferredCompletion",
+      "purpose": "reachability-witness",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 858,
+      "generatedStates": 8,
+      "distinctStates": 8,
+      "statesLeft": 5,
+      "logSha256": "d15a5dc6f0d66ff28d14d1ff2c3ab343416bf4c951e42f4f4ee6cfa4c88842a1",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/completion-wait-witness.cfg": "e44c35a35ee2068a1492ad48bdbb98b232ea24dd21eb4a99a9802cc16e16a3a9"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    },
+    {
+      "id": "lifecycle-source-error",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/source-error-witness.cfg",
+      "expect": "violation",
+      "invariant": "NoSourceErrorDiscard",
+      "purpose": "reachability-witness",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 859,
+      "generatedStates": 9,
+      "distinctStates": 9,
+      "statesLeft": 6,
+      "logSha256": "6e2d4606d3b846551eaa2e8fc9fe2e7a1cbfa17f2bb6c4e300bc9d467cb85f9e",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/source-error-witness.cfg": "43c024e4b66bc8fc51d0a826714c14fae312456b452d980489731269f4c6b0c9"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    },
+    {
+      "id": "lifecycle-inner-error",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/inner-error-witness.cfg",
+      "expect": "violation",
+      "invariant": "NoInnerError",
+      "purpose": "reachability-witness",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 1047,
+      "generatedStates": 181,
+      "distinctStates": 155,
+      "statesLeft": 30,
+      "logSha256": "516595d8513eca04f9882647bd677527e75e15738650da1fcf4168a5b6a6213d",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/inner-error-witness.cfg": "3d57f4d0cce946d997089fe334ae6be8d1d3970f35c7f75c0f5e22bf40bee3c7"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    },
+    {
+      "id": "lifecycle-boundary",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/boundary-witness.cfg",
+      "expect": "violation",
+      "invariant": "NoBoundaryStart",
+      "purpose": "reachability-witness",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 1046,
+      "generatedStates": 177,
+      "distinctStates": 151,
+      "statesLeft": 26,
+      "logSha256": "35fb7b215a73875f144ab757aa607df91199855b9a14afb65ea05e006d9587d2",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/boundary-witness.cfg": "6081319138c68a7ccb432a93012de29f4e05ba7589680e22bcb0720f6cfe69f2"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    },
+    {
+      "id": "lifecycle-result-completion",
+      "module": "experiments/04-search-lifecycle/SearchLifecycle.tla",
+      "config": "experiments/04-search-lifecycle/result-completion-witness.cfg",
+      "expect": "violation",
+      "invariant": "NoResultCompletion",
+      "purpose": "reachability-witness",
+      "replay": "lifecycle",
+      "outcome": "expected-invariant-violation",
+      "exitCode": 12,
+      "elapsedMs": 1004,
+      "generatedStates": 213,
+      "distinctStates": 180,
+      "statesLeft": 36,
+      "logSha256": "73db9dce909c1d4fc94fa2102bf67e289685e47d2afe478c8a61111ffbe3f5a7",
+      "inputs": {
+        "experiments/04-search-lifecycle/SearchLifecycle.tla": "2eec1566d904a0e6d3c72d9e331e015543578eedc73430d57fe5e727890779a0",
+        "experiments/04-search-lifecycle/result-completion-witness.cfg": "73fedec69f60bc15750664bcfe1423bf683bdb69ffd15c21256b548e5ec46de3"
+      },
+      "runtimeReplay": "same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ description: Create or maintain the bounded TLA+ checks, RxJS runtime correspond
 
 ## Synchronization
 
-Reviewed source: `b08677e85e04693e588f13a6a8279c43ad803650`.
+Reviewed source: `3704861ad442fb6d24f805f2e6e1cf4642f24431`.
 
 The exact reviewed source commit and SHA-256 file inventory live in `verification/coverage.json`. Read them before making a verification claim. A documentation/evidence commit may follow the reviewed source commit without changing covered inputs. The guard is change detection, not a proof that a model faithfully represents code.
 

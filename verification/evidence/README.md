@@ -1,6 +1,6 @@
-# Recorded verification evidence
+# Recorded verification evidence — initial laboratory
 
-The main recorded run checks source commit [`b08677e85e04693e588f13a6a8279c43ad803650`](https://github.com/hansschenker/rxjs-tla-plus/commit/b08677e85e04693e588f13a6a8279c43ad803650). A later commit adds this evidence, the coverage manifest and final skill/documentation notes. Covered implementation, model, test, toolchain and workflow files are unchanged from that source commit.
+These top-level evidence files preserve the initial seven-case run at source commit [`b08677e85e04693e588f13a6a8279c43ad803650`](https://github.com/hansschenker/rxjs-tla-plus/commit/b08677e85e04693e588f13a6a8279c43ad803650). Its initial publication added evidence and skill notes without changing that reviewed source. Subsequent code changes have their own snapshot: see [the lifecycle extension](lifecycle-extension/README.md) for the expanded 18-case/40-test run.
 
 Environment: Node `24.22.1`, RxJS `7.8.2`, Java `17.0.20`, official TLA+ tools release `v1.7.4` reporting TLC `2.19`, and optional published npm `tla-ts@0.0.3`. Exact package integrity, tool checksum and upstream source revisions are stored in the repository lockfiles. This is a bounded model-checking experiment, not an unbounded proof or a performance benchmark.
 
@@ -11,7 +11,7 @@ Environment: Node `24.22.1`, RxJS `7.8.2`, Java `17.0.20`, official TLA+ tools r
 | `npm run verify:tla-ts` | All seven verdicts, invariant names, generated/distinct counts and depths agreed; structured trace reproduced in RxJS | [tla-ts-results.json](tla-ts-results.json), [command log](tla-ts-command.log) |
 | Separate-agent skill forward test | Classified controlled change as implementation bug; aligned model and actual runtime trace corroborate it | [skill-forward-test.md](skill-forward-test.md), [forward-test/](forward-test/) |
 
-The main model report records SHA-256 hashes of its inputs and confirms they matched the stated source commit. [../coverage.json](../coverage.json) identifies all 27 covered source files. Its ordinary check verifies both the working files and the referenced Git commit, but this identity check does not prove semantic model/code correspondence.
+The initial model report records SHA-256 hashes of its inputs and confirms they matched the stated source commit. [initial-coverage.json](initial-coverage.json) preserves its 27-file reviewed inventory. The current [../coverage.json](../coverage.json) tracks the latest reviewed source. The ordinary guard verifies both working files and the referenced Git commit, but this identity check does not prove semantic model/code correspondence.
 
 The `tla-ts` report records each model/configuration hash and the structured replay. These inputs match the main model report. It is a comparison against published package bytes pinned by npm integrity, not an assertion that the package equals the inspected upstream Git revision.
 

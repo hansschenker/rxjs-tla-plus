@@ -1,0 +1,19 @@
+{
+  "recordedAt": "2026-10-30T08:01:16.928Z",
+  "reviewedSourceCommit": "3704861ad442fb6d24f805f2e6e1cf4642f24431",
+  "classification": "bug under the unchanged immediate-cancellation contract",
+  "baselineCommit": "ec21370cf1f87e160e550bc64e50851f8ed6d85c",
+  "mutantCommit": "b6ca0e0a66a289e14915930343fb565967ecbdde",
+  "modelSyncCommit": "c7303160e987aa8ca47cc05a544e4f3811b14e6a",
+  "mutationFile": "runtime/search-pipelines.mjs",
+  "originalSha256": "11cd3b7edc9a320bf82a452efe0d1098ebebe2b200336873186f20fac43c896d",
+  "mutatedSha256": "acbdad73d2c6b8912ff5a1f92102b79f7030db605c507ab790d1a0c9013d72d8",
+  "observations": {
+    "coverageGuard": "detected changed runtime source",
+    "unchangedModel": "passed, demonstrating that a green stale model can miss implementation drift",
+    "independentRuntimeChecks": "rejected the implementation regression",
+    "alignedModel": "violated the unchanged FreshEmission invariant",
+    "productionFiles": "unchanged; scratch implementation and model discarded"
+  },
+  "patch": "diff --git a/experiments/02-search-freshness/immediate.cfg b/experiments/02-search-freshness/immediate.cfg\nindex 0d57e39..cc16bb2 100644\n--- a/experiments/02-search-freshness/immediate.cfg\n+++ b/experiments/02-search-freshness/immediate.cfg\n@@ -1,6 +1,6 @@\n SPECIFICATION Spec\n CONSTANTS\n-  Policy = \"immediate\"\n+  Policy = \"debounced\"\n   Delay = 3\n   Horizon = 9\n   MaxQueries = 2\ndiff --git a/runtime/search-pipelines.mjs b/runtime/search-pipelines.mjs\nindex 829d60a..bebbf7c 100644\n--- a/runtime/search-pipelines.mjs\n+++ b/runtime/search-pipelines.mjs\n@@ -18,6 +18,7 @@ export function createDebouncedSearch$(queries$, search, delay, scheduler) {\n  * Source completion lets the final timer/request finish; it does not flush the timer.\n  */\n export function createImmediateCancelSearch$(queries$, search, delay, scheduler) {\n+  return createDebouncedSearch$(queries$, search, delay, scheduler); // deliberate regression\n   return queries$.pipe(\n     switchMap((query) => timer(delay, scheduler).pipe(\n       switchMap(() => search(query)),\n"
+}
