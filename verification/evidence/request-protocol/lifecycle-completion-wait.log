@@ -1,0 +1,105 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 8 cores with 455MB heap and 64MB offheap memory [pid: 19176] (Linux 6.18.57 amd64, Ubuntu 17.0.20 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /workspace/scratch/13c2db68ab78/rxjs-tla-plus/experiments/04-search-lifecycle/SearchLifecycle.tla
+Parsing file /tmp/Integers.tla
+Parsing file /tmp/FiniteSets.tla
+Parsing file /tmp/Naturals.tla
+Parsing file /tmp/Sequences.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module SearchLifecycle
+Starting... (2026-10-30 10:22:34)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-30 10:22:35.
+Error: Invariant NoDeferredCompletion is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ sourceState = "open"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ delivered = {}
+/\ now = 0
+/\ completionDeferred = FALSE
+/\ completionFlushed = FALSE
+/\ innerErrored = FALSE
+/\ latestRaw = 0
+/\ pending = 0
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ sourceErrorDiscardedPending = FALSE
+/\ boundaryQueryAfterStart = FALSE
+/\ destinationState = "open"
+/\ lastEvent = "Init"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ lastTimerAt = -1
+
+State 2: <Query line 76, col 3 to line 88, col 81 of module SearchLifecycle>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ sourceState = "open"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ delivered = {}
+/\ now = 0
+/\ completionDeferred = FALSE
+/\ completionFlushed = FALSE
+/\ innerErrored = FALSE
+/\ latestRaw = 1
+/\ pending = 1
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ sourceErrorDiscardedPending = FALSE
+/\ boundaryQueryAfterStart = FALSE
+/\ destinationState = "open"
+/\ lastEvent = "Query"
+/\ lastId = 1
+/\ started = {}
+/\ lastOutputId = 0
+/\ lastTimerAt = -1
+
+State 3: <SourceComplete line 119, col 3 to line 138, col 86 of module SearchLifecycle>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ active = 0
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ delivered = {}
+/\ now = 0
+/\ completionDeferred = TRUE
+/\ completionFlushed = FALSE
+/\ innerErrored = FALSE
+/\ latestRaw = 1
+/\ pending = 1
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ sourceErrorDiscardedPending = FALSE
+/\ boundaryQueryAfterStart = FALSE
+/\ destinationState = "open"
+/\ lastEvent = "SourceComplete"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ lastTimerAt = -1
+
+8 states generated, 8 distinct states found, 5 states left on queue.
+The depth of the complete state graph search is 3.
+The average outdegree of the complete state graph is 5 (minimum is 5, the maximum 5 and the 95th percentile is 5).
+Finished in 00s at (2026-10-30 10:22:35)

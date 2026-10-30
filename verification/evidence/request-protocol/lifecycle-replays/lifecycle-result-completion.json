@@ -1,0 +1,392 @@
+{
+  "id": "lifecycle-result-completion",
+  "invariant": "NoResultCompletion",
+  "purpose": "reachability-witness",
+  "policy": "immediate",
+  "timerOrder": "timer-first",
+  "delay": 2,
+  "horizon": 2,
+  "states": [
+    {
+      "step": 1,
+      "now": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "timer",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Init",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 2,
+      "now": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "EndTimer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 3,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 1,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Query",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 4,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "SourceComplete",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 5,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "done",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "EndExternal",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 6,
+      "now": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "timer",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "Tick",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 7,
+      "now": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "EndTimer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 8,
+      "now": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "done",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "EndExternal",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 9,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "timer",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "Tick",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 10,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 1,
+      "lastId": 1,
+      "lastStartedId": 1,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "timer",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "Timer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 11,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 1,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "phase": "external",
+      "sourceState": "completed",
+      "destinationState": "open",
+      "lastEvent": "EndTimer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 12,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "lastId": 1,
+      "lastStartedId": 0,
+      "lastStoppedId": 1,
+      "lastOutputId": 1,
+      "phase": "external",
+      "sourceState": "completed",
+      "destinationState": "completed",
+      "lastEvent": "Result",
+      "lastStopReason": "complete",
+      "lastTerminal": "C",
+      "badEmission": false
+    }
+  ],
+  "events": [
+    {
+      "type": "Query",
+      "at": 0,
+      "id": 1
+    },
+    {
+      "type": "SourceComplete",
+      "at": 0,
+      "id": 0
+    },
+    {
+      "type": "Result",
+      "at": 2,
+      "id": 1
+    }
+  ],
+  "expected": {
+    "starts": [
+      {
+        "at": 2,
+        "id": 1
+      }
+    ],
+    "stops": [
+      {
+        "at": 2,
+        "id": 1,
+        "reason": "complete"
+      }
+    ],
+    "notifications": [
+      {
+        "at": 2,
+        "kind": "N",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "kind": "C"
+      }
+    ],
+    "violations": [],
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "sourceState": "completed",
+    "destinationState": "completed",
+    "sourceOwned": false,
+    "destinationClosed": true,
+    "latestQueryId": 1,
+    "activeRequests": []
+  },
+  "runtime": {
+    "policy": "immediate",
+    "timerOrder": "timer-first",
+    "delay": 2,
+    "horizon": 2,
+    "latestQueryId": 1,
+    "sourceState": "completed",
+    "destinationState": "completed",
+    "sourceOwned": false,
+    "sourceLifetime": {
+      "start": 0,
+      "stop": 0,
+      "stopReason": "complete"
+    },
+    "destinationClosed": true,
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "outputs": [
+      {
+        "at": 2,
+        "id": 1,
+        "value": 1
+      }
+    ],
+    "notifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "value": 1,
+        "kind": "N"
+      },
+      {
+        "at": 2,
+        "kind": "C"
+      }
+    ],
+    "violations": [],
+    "log": [
+      {
+        "at": 0,
+        "type": "SourceSubscribe"
+      },
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 0,
+        "type": "SourceComplete"
+      },
+      {
+        "at": 0,
+        "type": "SourceStop",
+        "reason": "complete"
+      },
+      {
+        "at": 2,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "ResultAttempt",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "Next",
+        "id": 1,
+        "value": 1
+      },
+      {
+        "at": 2,
+        "type": "Complete"
+      },
+      {
+        "at": 2,
+        "type": "RequestStop",
+        "id": 1,
+        "reason": "complete"
+      }
+    ],
+    "requests": [
+      {
+        "id": 1,
+        "start": 2,
+        "stop": 2,
+        "stopReason": "complete",
+        "closed": true
+      }
+    ]
+  }
+}

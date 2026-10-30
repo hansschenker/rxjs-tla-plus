@@ -1,0 +1,30 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> rxjs-tla-plus@0.1.0 check:coverage
+> node scripts/check-coverage.mjs
+
+Verification review required; do not refresh the pin just to pass.
+changed: .github/workflows/verify.yml
+changed: experiments.json
+changed: experiments/03-tla-ts/compare.mjs
+added: experiments/05-request-protocol/RequestProtocol.tla
+added: experiments/05-request-protocol/cancel-after-value-witness.cfg
+added: experiments/05-request-protocol/debounced-external.cfg
+added: experiments/05-request-protocol/debounced-freshness.cfg
+added: experiments/05-request-protocol/debounced-timer.cfg
+added: experiments/05-request-protocol/empty-completion-witness.cfg
+added: experiments/05-request-protocol/immediate-external.cfg
+added: experiments/05-request-protocol/immediate-timer.cfg
+added: experiments/05-request-protocol/multi-value-completion-witness.cfg
+added: experiments/05-request-protocol/multiple-values-witness.cfg
+added: experiments/05-request-protocol/mutant-complete-on-next.cfg
+added: experiments/05-request-protocol/next-after-source-complete-witness.cfg
+added: experiments/05-request-protocol/next-then-error-witness.cfg
+added: experiments/05-request-protocol/switch-after-value-witness.cfg
+changed: package.json
+added: runtime/replay-request-protocol.mjs
+changed: scripts/check-models.mjs
+added: scripts/check-protocol-mutation.mjs
+added: scripts/request-protocol-evidence.mjs
+added: tests/request-protocol-evidence.test.mjs
+added: tests/request-protocol.test.mjs

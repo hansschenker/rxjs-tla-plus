@@ -1,0 +1,363 @@
+{
+  "recordedAt": "2026-10-30T09:22:22.799Z",
+  "reviewedSourceCommit": "4b80ea40adad33464bcc3787b797bb9c2a0444ac",
+  "classification": "implementation bug under the unchanged independent request notification contract",
+  "mutation": "wrap the immediate policy request in take(1), in a disposable copy",
+  "originalSha256": "11cd3b7edc9a320bf82a452efe0d1098ebebe2b200336873186f20fac43c896d",
+  "mutatedSha256": "5ad32f2d9c9e656330e044a0875f44fda03b6da549cec1c123eab2cc2905dce6",
+  "inputs": {
+    "scripts/check-protocol-mutation.mjs": "b26c9ff8e156bdafd00b487b8abeb5f0218c8c63775d7676ecbd06c092fc4d74",
+    "runtime/search-pipelines.mjs": "11cd3b7edc9a320bf82a452efe0d1098ebebe2b200336873186f20fac43c896d",
+    "runtime/replay-request-protocol.mjs": "298f067d12bbabf3d4c17a57bf634b0c0a34a18a5b3bfcab0ab111c7bd14d079",
+    "tests/request-protocol.test.mjs": "365e2c72d3ccd511b288337390f0a207fc40a478fd94c074f6f1d20439d7b9fb"
+  },
+  "testName": "source completion waits for independent inner completion after multiple values",
+  "baselineTestExit": 0,
+  "mutantTestExit": 1,
+  "events": [
+    {
+      "type": "Query",
+      "at": 0,
+      "id": 1
+    },
+    {
+      "type": "SourceComplete",
+      "at": 1
+    },
+    {
+      "type": "InnerNext",
+      "at": 2,
+      "id": 1,
+      "value": "first"
+    },
+    {
+      "type": "InnerNext",
+      "at": 3,
+      "id": 1,
+      "value": "second"
+    },
+    {
+      "type": "InnerComplete",
+      "at": 4,
+      "id": 1
+    }
+  ],
+  "settings": {
+    "policy": "immediate",
+    "timerOrder": "timer-first",
+    "delay": 2,
+    "horizon": 4
+  },
+  "correct": {
+    "policy": "immediate",
+    "timerOrder": "timer-first",
+    "delay": 2,
+    "horizon": 4,
+    "latestQueryId": 1,
+    "sourceState": "completed",
+    "destinationState": "completed",
+    "sourceOwned": false,
+    "sourceLifetime": {
+      "start": 0,
+      "stop": 1,
+      "stopReason": "complete"
+    },
+    "destinationClosed": true,
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "acceptedInnerNotifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "kind": "N",
+        "index": 1,
+        "value": "first"
+      },
+      {
+        "at": 3,
+        "id": 1,
+        "kind": "N",
+        "index": 2,
+        "value": "second"
+      },
+      {
+        "at": 4,
+        "id": 1,
+        "kind": "C"
+      }
+    ],
+    "outputs": [
+      {
+        "at": 2,
+        "id": 1,
+        "index": 1,
+        "value": "first"
+      },
+      {
+        "at": 3,
+        "id": 1,
+        "index": 2,
+        "value": "second"
+      }
+    ],
+    "notifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "index": 1,
+        "value": "first",
+        "kind": "N"
+      },
+      {
+        "at": 3,
+        "id": 1,
+        "index": 2,
+        "value": "second",
+        "kind": "N"
+      },
+      {
+        "at": 4,
+        "kind": "C"
+      }
+    ],
+    "violations": [],
+    "log": [
+      {
+        "at": 0,
+        "type": "SourceSubscribe"
+      },
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 1,
+        "type": "SourceComplete"
+      },
+      {
+        "at": 1,
+        "type": "SourceStop",
+        "reason": "complete"
+      },
+      {
+        "at": 2,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNextAttempt",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNext",
+        "id": 1,
+        "index": 1,
+        "value": "first"
+      },
+      {
+        "at": 2,
+        "type": "Next",
+        "id": 1,
+        "index": 1,
+        "value": "first"
+      },
+      {
+        "at": 3,
+        "type": "InnerNextAttempt",
+        "id": 1
+      },
+      {
+        "at": 3,
+        "type": "InnerNext",
+        "id": 1,
+        "index": 2,
+        "value": "second"
+      },
+      {
+        "at": 3,
+        "type": "Next",
+        "id": 1,
+        "index": 2,
+        "value": "second"
+      },
+      {
+        "at": 4,
+        "type": "InnerCompleteAttempt",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "InnerComplete",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "Complete"
+      },
+      {
+        "at": 4,
+        "type": "RequestStop",
+        "id": 1,
+        "reason": "complete"
+      }
+    ],
+    "requests": [
+      {
+        "id": 1,
+        "start": 2,
+        "stop": 4,
+        "stopReason": "complete",
+        "nextCount": 2,
+        "closed": true
+      }
+    ]
+  },
+  "mutant": {
+    "policy": "immediate",
+    "timerOrder": "timer-first",
+    "delay": 2,
+    "horizon": 4,
+    "latestQueryId": 1,
+    "sourceState": "completed",
+    "destinationState": "completed",
+    "sourceOwned": false,
+    "sourceLifetime": {
+      "start": 0,
+      "stop": 1,
+      "stopReason": "complete"
+    },
+    "destinationClosed": true,
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "acceptedInnerNotifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "kind": "N",
+        "index": 1,
+        "value": "first"
+      }
+    ],
+    "outputs": [
+      {
+        "at": 2,
+        "id": 1,
+        "index": 1,
+        "value": "first"
+      }
+    ],
+    "notifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "index": 1,
+        "value": "first",
+        "kind": "N"
+      },
+      {
+        "at": 2,
+        "kind": "C"
+      }
+    ],
+    "violations": [],
+    "log": [
+      {
+        "at": 0,
+        "type": "SourceSubscribe"
+      },
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 1,
+        "type": "SourceComplete"
+      },
+      {
+        "at": 1,
+        "type": "SourceStop",
+        "reason": "complete"
+      },
+      {
+        "at": 2,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNextAttempt",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNext",
+        "id": 1,
+        "index": 1,
+        "value": "first"
+      },
+      {
+        "at": 2,
+        "type": "Next",
+        "id": 1,
+        "index": 1,
+        "value": "first"
+      },
+      {
+        "at": 2,
+        "type": "Complete"
+      },
+      {
+        "at": 2,
+        "type": "RequestStop",
+        "id": 1,
+        "reason": "unsubscribe"
+      },
+      {
+        "at": 3,
+        "type": "InnerNextAttempt",
+        "id": 1
+      },
+      {
+        "at": 3,
+        "type": "IgnoredInnerNext",
+        "id": 1,
+        "reason": "subscription-closed"
+      },
+      {
+        "at": 4,
+        "type": "InnerCompleteAttempt",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "IgnoredInnerComplete",
+        "id": 1,
+        "reason": "subscription-closed"
+      }
+    ],
+    "requests": [
+      {
+        "id": 1,
+        "start": 2,
+        "stop": 2,
+        "stopReason": "unsubscribe",
+        "nextCount": 1,
+        "closed": true
+      }
+    ]
+  },
+  "interpretation": "The first next incorrectly completes output, unsubscribes the request, and loses its second value. The model-only CompleteOnNext mutation separately exercises NextKeepsRequestActive; the two mutations are complementary fault checks, not matching teardown traces.",
+  "productionFiles": "unchanged; disposable copy removed"
+}

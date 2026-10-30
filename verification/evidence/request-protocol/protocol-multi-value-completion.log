@@ -1,0 +1,441 @@
+TLC2 Version 2.19 of 08 August 2024 (rev: 5a47802)
+Running breadth-first search Model-Checking with fp 0 and seed 1 with 1 worker on 8 cores with 455MB heap and 64MB offheap memory [pid: 20063] (Linux 6.18.57 amd64, Ubuntu 17.0.20 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /workspace/scratch/13c2db68ab78/rxjs-tla-plus/experiments/05-request-protocol/RequestProtocol.tla
+Parsing file /tmp/Integers.tla
+Parsing file /tmp/Sequences.tla
+Parsing file /tmp/FiniteSets.tla
+Parsing file /tmp/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module Sequences
+Semantic processing of module FiniteSets
+Semantic processing of module RequestProtocol
+Starting... (2026-10-30 10:22:48)
+Computing initial states...
+Finished computing initial states: 1 distinct state generated at 2026-10-30 10:22:48.
+Error: Invariant NoMultiValueCompletion is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ phase = "timer"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "open"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 0
+/\ cancelledRequests = {}
+/\ latestRaw = 0
+/\ pending = 0
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "Init"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 2: <EndTimer line 234, col 3 to line 240, col 96 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "open"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 0
+/\ cancelledRequests = {}
+/\ latestRaw = 0
+/\ pending = 0
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "EndTimer"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 3: <Query line 86, col 3 to line 100, col 31 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "open"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 0
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "Query"
+/\ lastId = 1
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 4: <SourceComplete line 155, col 3 to line 175, col 73 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 0
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "SourceComplete"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 5: <EndExternal line 225, col 3 to line 231, col 96 of module RequestProtocol>
+/\ phase = "done"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 0
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "EndExternal"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 6: <Tick line 243, col 3 to line 250, col 96 of module RequestProtocol>
+/\ phase = "timer"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 1
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "Tick"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 7: <EndTimer line 234, col 3 to line 240, col 96 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 1
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "EndTimer"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 8: <EndExternal line 225, col 3 to line 231, col 96 of module RequestProtocol>
+/\ phase = "done"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 1
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "EndExternal"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 9: <Tick line 243, col 3 to line 250, col 96 of module RequestProtocol>
+/\ phase = "timer"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 0
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 2
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 1
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = 2
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "Tick"
+/\ lastId = 0
+/\ started = {}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 10: <Timer line 103, col 3 to line 115, col 31 of module RequestProtocol>
+/\ phase = "timer"
+/\ lastStartedId = 1
+/\ completedRequests = {}
+/\ active = 1
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 2
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 0
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "Timer"
+/\ lastId = 1
+/\ started = {1}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 11: <EndTimer line 234, col 3 to line 240, col 96 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 1
+/\ nextCounts = <<0, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 0
+/\ now = 2
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 0
+/\ acceptedNexts = <<>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<>>
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "EndTimer"
+/\ lastId = 0
+/\ started = {1}
+/\ lastOutputId = 0
+/\ closedOutputLength = -1
+
+State 12: <InnerNext line 118, col 3 to line 136, col 54 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 1
+/\ nextCounts = <<1, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 1
+/\ now = 2
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 0
+/\ acceptedNexts = <<<<1, 1>>>>
+/\ lastOutputIndex = 1
+/\ outputHistory = <<<<1, 1>>>>
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "InnerNext"
+/\ lastId = 1
+/\ started = {1}
+/\ lastOutputId = 1
+/\ closedOutputLength = -1
+
+State 13: <InnerNext line 118, col 3 to line 136, col 54 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {}
+/\ active = 1
+/\ nextCounts = <<2, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "none"
+/\ stopped = {}
+/\ activeNextCount = 2
+/\ now = 2
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 0
+/\ acceptedNexts = <<<<1, 1>>, <<1, 2>>>>
+/\ lastOutputIndex = 2
+/\ outputHistory = <<<<1, 1>>, <<1, 2>>>>
+/\ deadline = -1
+/\ lastStopReason = "none"
+/\ terminalCount = 0
+/\ lastStoppedId = 0
+/\ erroredRequests = {}
+/\ destinationState = "open"
+/\ lastEvent = "InnerNext"
+/\ lastId = 1
+/\ started = {1}
+/\ lastOutputId = 1
+/\ closedOutputLength = -1
+
+State 14: <InnerComplete line 139, col 3 to line 152, col 61 of module RequestProtocol>
+/\ phase = "external"
+/\ lastStartedId = 0
+/\ completedRequests = {1}
+/\ active = 0
+/\ nextCounts = <<2, 0>>
+/\ badEmission = FALSE
+/\ sourceState = "completed"
+/\ lastTerminal = "C"
+/\ stopped = {1}
+/\ activeNextCount = 0
+/\ now = 2
+/\ cancelledRequests = {}
+/\ latestRaw = 1
+/\ pending = 0
+/\ acceptedNexts = <<<<1, 1>>, <<1, 2>>>>
+/\ lastOutputIndex = 0
+/\ outputHistory = <<<<1, 1>>, <<1, 2>>>>
+/\ deadline = -1
+/\ lastStopReason = "complete"
+/\ terminalCount = 1
+/\ lastStoppedId = 1
+/\ erroredRequests = {}
+/\ destinationState = "completed"
+/\ lastEvent = "InnerComplete"
+/\ lastId = 1
+/\ started = {1}
+/\ lastOutputId = 0
+/\ closedOutputLength = 2
+
+418 states generated, 349 distinct states found, 97 states left on queue.
+The depth of the complete state graph search is 14.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 8 and the 95th percentile is 5).
+Finished in 00s at (2026-10-30 10:22:49)

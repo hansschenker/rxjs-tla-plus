@@ -1,0 +1,87 @@
+{"command":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","--test","--test-reporter=tap","--test-name-pattern=^source completion waits for independent inner completion after multiple values$","tests/request-protocol.test.mjs"],"exitCode":0}
+TAP version 13
+# Subtest: source completion waits for independent inner completion after multiple values
+ok 1 - source completion waits for independent inner completion after multiple values
+  ---
+  duration_ms: 5.750069
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 182.314608
+
+{"command":["/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node","--test","--test-reporter=tap","--test-name-pattern=^source completion waits for independent inner completion after multiple values$","tests/request-protocol.test.mjs"],"exitCode":1}
+TAP version 13
+# Subtest: source completion waits for independent inner completion after multiple values
+not ok 1 - source completion waits for independent inner completion after multiple values
+  ---
+  duration_ms: 7.801602
+  type: 'test'
+  location: '/workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/protocol-mutation-nhSpQA/tests/request-protocol.test.mjs:37:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      [
+        {
+          at: 3,
+          id: 1,
+          index: 1,
+    ...
+        {
+    +     at: 3,
+    +     kind: 'C'
+    -     at: 4,
+    -     id: 1,
+    -     index: 2,
+    -     kind: 'N'
+        }
+      ]
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    0:
+      at: 3
+      kind: 'N'
+      id: 1
+      index: 1
+    1:
+      at: 4
+      kind: 'N'
+      id: 1
+      index: 2
+  actual:
+    0:
+      at: 3
+      kind: 'N'
+      id: 1
+      index: 1
+    1:
+      at: 3
+      kind: 'C'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///workspace/scratch/13c2db68ab78/rxjs-tla-plus/artifacts/protocol-mutation-nhSpQA/tests/request-protocol.test.mjs:47:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1402:25)
+    Test.start (node:internal/test_runner/test:1262:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 276.389712

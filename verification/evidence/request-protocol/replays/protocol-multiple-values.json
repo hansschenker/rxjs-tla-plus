@@ -1,0 +1,512 @@
+{
+  "id": "protocol-multiple-values",
+  "invariant": "NoMultipleValues",
+  "purpose": "reachability-witness",
+  "policy": "immediate",
+  "timerOrder": "timer-first",
+  "delay": 2,
+  "maxValues": 2,
+  "horizon": 2,
+  "states": [
+    {
+      "step": 1,
+      "now": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "timer",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Init",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 2,
+      "now": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "deadline": -1,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "EndTimer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 3,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 1,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Query",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 4,
+      "now": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "done",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "EndExternal",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 5,
+      "now": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "timer",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Tick",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 6,
+      "now": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "EndTimer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 7,
+      "now": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "done",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "EndExternal",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 8,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 1,
+      "deadline": 2,
+      "active": 0,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "timer",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Tick",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 9,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 1,
+      "activeNextCount": 0,
+      "lastId": 1,
+      "lastStartedId": 1,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "timer",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "Timer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 10,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 1,
+      "activeNextCount": 0,
+      "lastId": 0,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 0,
+      "lastOutputIndex": 0,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "EndTimer",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 11,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 1,
+      "activeNextCount": 1,
+      "lastId": 1,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 1,
+      "lastOutputIndex": 1,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "InnerNext",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    },
+    {
+      "step": 12,
+      "now": 2,
+      "latestRaw": 1,
+      "pending": 0,
+      "deadline": -1,
+      "active": 1,
+      "activeNextCount": 2,
+      "lastId": 1,
+      "lastStartedId": 0,
+      "lastStoppedId": 0,
+      "lastOutputId": 1,
+      "lastOutputIndex": 2,
+      "phase": "external",
+      "sourceState": "open",
+      "destinationState": "open",
+      "lastEvent": "InnerNext",
+      "lastStopReason": "none",
+      "lastTerminal": "none",
+      "badEmission": false
+    }
+  ],
+  "events": [
+    {
+      "type": "Query",
+      "at": 0,
+      "id": 1
+    },
+    {
+      "type": "InnerNext",
+      "at": 2,
+      "id": 1,
+      "value": {
+        "requestId": 1,
+        "position": 1
+      }
+    },
+    {
+      "type": "InnerNext",
+      "at": 2,
+      "id": 1,
+      "value": {
+        "requestId": 1,
+        "position": 2
+      }
+    }
+  ],
+  "expected": {
+    "starts": [
+      {
+        "at": 2,
+        "id": 1
+      }
+    ],
+    "stops": [],
+    "notifications": [
+      {
+        "at": 2,
+        "kind": "N",
+        "id": 1,
+        "index": 1
+      },
+      {
+        "at": 2,
+        "kind": "N",
+        "id": 1,
+        "index": 2
+      }
+    ],
+    "acceptedInnerNotifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "kind": "N",
+        "index": 1
+      },
+      {
+        "at": 2,
+        "id": 1,
+        "kind": "N",
+        "index": 2
+      }
+    ],
+    "requestNextCounts": [
+      {
+        "id": 1,
+        "nextCount": 2
+      }
+    ],
+    "violations": [],
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "sourceState": "open",
+    "destinationState": "open",
+    "sourceOwned": true,
+    "destinationClosed": false,
+    "latestQueryId": 1,
+    "activeRequests": [
+      1
+    ],
+    "activeNextCount": 2,
+    "badEmission": false
+  },
+  "runtime": {
+    "policy": "immediate",
+    "timerOrder": "timer-first",
+    "delay": 2,
+    "horizon": 2,
+    "latestQueryId": 1,
+    "sourceState": "open",
+    "destinationState": "open",
+    "sourceOwned": true,
+    "sourceLifetime": {
+      "start": 0,
+      "stop": null,
+      "stopReason": null
+    },
+    "destinationClosed": false,
+    "acceptedQueries": [
+      {
+        "at": 0,
+        "id": 1
+      }
+    ],
+    "acceptedInnerNotifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "kind": "N",
+        "index": 1,
+        "value": {
+          "requestId": 1,
+          "position": 1
+        }
+      },
+      {
+        "at": 2,
+        "id": 1,
+        "kind": "N",
+        "index": 2,
+        "value": {
+          "requestId": 1,
+          "position": 2
+        }
+      }
+    ],
+    "outputs": [
+      {
+        "at": 2,
+        "id": 1,
+        "index": 1,
+        "value": {
+          "requestId": 1,
+          "position": 1
+        }
+      },
+      {
+        "at": 2,
+        "id": 1,
+        "index": 2,
+        "value": {
+          "requestId": 1,
+          "position": 2
+        }
+      }
+    ],
+    "notifications": [
+      {
+        "at": 2,
+        "id": 1,
+        "index": 1,
+        "value": {
+          "requestId": 1,
+          "position": 1
+        },
+        "kind": "N"
+      },
+      {
+        "at": 2,
+        "id": 1,
+        "index": 2,
+        "value": {
+          "requestId": 1,
+          "position": 2
+        },
+        "kind": "N"
+      }
+    ],
+    "violations": [],
+    "log": [
+      {
+        "at": 0,
+        "type": "SourceSubscribe"
+      },
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNextAttempt",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNext",
+        "id": 1,
+        "index": 1,
+        "value": {
+          "requestId": 1,
+          "position": 1
+        }
+      },
+      {
+        "at": 2,
+        "type": "Next",
+        "id": 1,
+        "index": 1,
+        "value": {
+          "requestId": 1,
+          "position": 1
+        }
+      },
+      {
+        "at": 2,
+        "type": "InnerNextAttempt",
+        "id": 1
+      },
+      {
+        "at": 2,
+        "type": "InnerNext",
+        "id": 1,
+        "index": 2,
+        "value": {
+          "requestId": 1,
+          "position": 2
+        }
+      },
+      {
+        "at": 2,
+        "type": "Next",
+        "id": 1,
+        "index": 2,
+        "value": {
+          "requestId": 1,
+          "position": 2
+        }
+      }
+    ],
+    "requests": [
+      {
+        "id": 1,
+        "start": 2,
+        "stop": null,
+        "stopReason": null,
+        "nextCount": 2,
+        "closed": false
+      }
+    ]
+  }
+}

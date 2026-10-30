@@ -1,0 +1,230 @@
+{
+  "states": [
+    {
+      "step": 1,
+      "at": 0,
+      "event": "Init",
+      "id": 0,
+      "latestRaw": 0,
+      "pending": 0,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 2,
+      "at": 0,
+      "event": "Query",
+      "id": 1,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 3,
+      "at": 1,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 4,
+      "at": 2,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 5,
+      "at": 3,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 1,
+      "active": 0,
+      "badEmission": false
+    },
+    {
+      "step": 6,
+      "at": 3,
+      "event": "Timer",
+      "id": 1,
+      "latestRaw": 1,
+      "pending": 0,
+      "active": 1,
+      "badEmission": false
+    },
+    {
+      "step": 7,
+      "at": 4,
+      "event": "Tick",
+      "id": 0,
+      "latestRaw": 1,
+      "pending": 0,
+      "active": 1,
+      "badEmission": false
+    },
+    {
+      "step": 8,
+      "at": 4,
+      "event": "Query",
+      "id": 2,
+      "latestRaw": 2,
+      "pending": 2,
+      "active": 1,
+      "badEmission": false
+    },
+    {
+      "step": 9,
+      "at": 4,
+      "event": "Result",
+      "id": 1,
+      "latestRaw": 2,
+      "pending": 2,
+      "active": 0,
+      "badEmission": true
+    }
+  ],
+  "events": [
+    {
+      "type": "Query",
+      "at": 0,
+      "id": 1
+    },
+    {
+      "type": "Query",
+      "at": 4,
+      "id": 2
+    },
+    {
+      "type": "Result",
+      "at": 4,
+      "id": 1
+    }
+  ],
+  "runtime": {
+    "policy": "debounced",
+    "delay": 3,
+    "horizon": 4,
+    "outputs": [
+      {
+        "at": 4,
+        "id": 1,
+        "value": 1
+      }
+    ],
+    "notifications": [
+      {
+        "at": 4,
+        "id": 1,
+        "value": 1,
+        "kind": "N"
+      }
+    ],
+    "requests": [
+      {
+        "id": 1,
+        "start": 3,
+        "stop": 4,
+        "stopReason": "complete"
+      }
+    ],
+    "violations": [
+      {
+        "at": 4,
+        "resultId": 1,
+        "latestQueryId": 2
+      }
+    ],
+    "log": [
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 3,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "Query",
+        "id": 2
+      },
+      {
+        "at": 4,
+        "type": "ResultAttempt",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "Next",
+        "id": 1,
+        "value": 1
+      },
+      {
+        "at": 4,
+        "type": "RequestStop",
+        "id": 1,
+        "reason": "complete"
+      }
+    ]
+  },
+  "corrected": {
+    "policy": "immediate",
+    "delay": 3,
+    "horizon": 4,
+    "outputs": [],
+    "notifications": [],
+    "requests": [
+      {
+        "id": 1,
+        "start": 3,
+        "stop": 4,
+        "stopReason": "unsubscribe"
+      }
+    ],
+    "violations": [],
+    "log": [
+      {
+        "at": 0,
+        "type": "Query",
+        "id": 1
+      },
+      {
+        "at": 3,
+        "type": "RequestStart",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "Query",
+        "id": 2
+      },
+      {
+        "at": 4,
+        "type": "RequestStop",
+        "id": 1,
+        "reason": "unsubscribe"
+      },
+      {
+        "at": 4,
+        "type": "ResultAttempt",
+        "id": 1
+      },
+      {
+        "at": 4,
+        "type": "IgnoredResult",
+        "id": 1,
+        "reason": "subscription-closed"
+      }
+    ]
+  }
+}

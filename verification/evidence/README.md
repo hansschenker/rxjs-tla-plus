@@ -1,5 +1,10 @@
 # Recorded verification evidence — initial laboratory
 
+The current expanded verification is recorded in the
+[request notification protocol snapshot](request-protocol/README.md):
+31 configurations, 65 named tests, both checker paths, and both implementation
+mutation drills. This page and its top-level files retain the initial history.
+
 These top-level evidence files preserve the initial seven-case run at source commit [`b08677e85e04693e588f13a6a8279c43ad803650`](https://github.com/hansschenker/rxjs-tla-plus/commit/b08677e85e04693e588f13a6a8279c43ad803650). Its initial publication added evidence and skill notes without changing that reviewed source. Subsequent code changes have their own snapshot: see [the lifecycle extension](lifecycle-extension/README.md) for the expanded 18-case/40-test run.
 
 Environment: Node `24.22.1`, RxJS `7.8.2`, Java `17.0.20`, official TLA+ tools release `v1.7.4` reporting TLC `2.19`, and optional published npm `tla-ts@0.0.3`. Exact package integrity, tool checksum and upstream source revisions are stored in the repository lockfiles. This is a bounded model-checking experiment, not an unbounded proof or a performance benchmark.

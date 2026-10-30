@@ -7,7 +7,7 @@ description: Create or maintain the bounded TLA+ checks, RxJS runtime correspond
 
 ## Synchronization
 
-Reviewed source: `3704861ad442fb6d24f805f2e6e1cf4642f24431`.
+Reviewed source: `4b80ea40adad33464bcc3787b797bb9c2a0444ac`.
 
 The exact reviewed source commit and SHA-256 file inventory live in `verification/coverage.json`. Read them before making a verification claim. A documentation/evidence commit may follow the reviewed source commit without changing covered inputs. The guard is change detection, not a proof that a model faithfully represents code.
 
@@ -21,6 +21,7 @@ Current correspondences:
 
 | Contract | Specification | Runtime evidence |
 |---|---|---|
+| Independent request next/complete/error, multiple values and empty completion | experiments/05-request-protocol/RequestProtocol.tla and thirteen configs | runtime/replay-request-protocol.mjs, tests/request-protocol.test.mjs, scripts/request-protocol-evidence.mjs |
 | `take` quota, notification order and source ownership | `experiments/01-take/Take.tla` plus three configs | `tests/take.test.mjs`, installed RxJS 7.8.2 |
 | Latest raw-query notification owns each emitted result | `experiments/02-search-freshness/SearchFreshness.tla` and search configs | `runtime/search-pipelines.mjs`, `runtime/replay-search-trace.mjs`, `tests/search-freshness.test.mjs` |
 | Separate source/output lifetime, terminal reactions, and explicit timer-boundary order | `experiments/04-search-lifecycle/SearchLifecycle.tla` and eleven configs | `runtime/replay-lifecycle-trace.mjs`, `tests/search-lifecycle.test.mjs`, `scripts/lifecycle-evidence.mjs` |
@@ -57,6 +58,14 @@ Do not interpret a shell/container failure as a property violation. Java needs l
 
 ## 3. Map each semantic change explicitly
 
+Experiment 05 adds the independent request notification protocol in
+experiments/05-request-protocol/RequestProtocol.tla. Its implementation evidence
+is runtime/replay-request-protocol.mjs, tests/request-protocol.test.mjs and
+scripts/request-protocol-evidence.mjs. InnerNext forwards one opaque value and
+retains ownership; InnerComplete closes without inventing a value; InnerError
+can follow zero or more values. Positions identify accepted notifications within
+each request, even when their payloads are identical.
+
 For a changed pipeline, identify raw notifications, selected inner subscriptions, timer ownership, downstream outputs and terminal events. Define what each atomic action represents and the observation boundary. Read the pinned RxJS source or the installed exact package when operator semantics are uncertain.
 
 For a new bounded model, list the finite value domains, cardinalities, time horizon and scheduler assumptions. Keep time, completion, cancellation and sharing explicit when relevant. A Mealy description may supply local transitions, but composition and environment actions require separate treatment. Do not claim an automatic exporter exists here.
@@ -87,9 +96,22 @@ npm ci --prefix experiments/03-tla-ts --ignore-scripts --no-audit --no-fund
 npm run verify:tla-ts
 ```
 
-`tla-ts` consumes TLA+ text. Its structured trace is useful for adapters; agreement on these 18 cases does not establish universal equivalence with TLC. The comparison replays the initial freshness trace and seven lifecycle traces. No temporal/liveness properties are exercised in the current experiments.
+`tla-ts` consumes TLA+ text. Its structured trace is useful for adapters; agreement on these 31 cases does not establish universal equivalence with TLC. The comparison replays the initial freshness trace, seven lifecycle traces and eight request-protocol traces. No temporal/liveness properties are exercised in the current experiments.
 
 ## 5. Demonstrate fault sensitivity
+
+For the independent request protocol, also run:
+
+    npm run verify:protocol-mutation
+
+This requires a reviewed baseline. It runs the unchanged source-completion and
+multiple-value test, adds take(1) only to a disposable immediate-policy request
+pipeline, and requires that same named test to fail. A concrete runtime trace
+must show early output completion and loss of the second value. The model's
+CompleteOnNext mutant separately violates NextKeepsRequestActive. These are
+complementary checks: take(1) unsubscribes the underlying request, while the model
+mutant represents an invented request completion. Do not claim their teardown
+traces are equivalent.
 
 ```sh
 npm run verify:mutation
@@ -116,6 +138,26 @@ npm run verify:mutation
 The recorder checks that every covered working file exactly matches that commit. It will not record a dirty implementation. Update this synchronization note with the reviewed SHA and save selected evidence under `verification/evidence/`; normal runs continue to use ignored `artifacts/`. Commit the pin, skill note and evidence separately. Do not refresh the pin merely to silence the guard, and do not claim a bug is fixed because verification now describes it.
 
 ## Scope reminders
+
+Experiment 05 has delay 2, integer frames 0 through 4, two query notifications,
+and at most two accepted values per request. Reaching the value bound does not
+complete or error the request. Each terminal action remains independent, and a
+request can remain open at the horizon. It retains both scheduler profiles and
+the non-reentrant observation boundary from experiment 04. Payloads are abstract
+request/position tokens in TLA+; concrete payload identity is runtime evidence.
+
+The current aggregate gate has 31 configurations and 65 named tests. The
+comparison runs the original search trace, seven lifecycle traces and eight
+request-protocol traces through real RxJS. For protocol replay, compare accepted
+inner N/C/E events, output request IDs and positions, counts, request stops and
+reasons, freshness and actual final ownership. Derive accepted input positions
+independently of model output positions. Reject unknown configurations and never
+replay the intentionally faulty model as evidence for the correct implementation.
+
+The 48 independent retained-subscriber probes in the request-protocol evidence
+call actual RxJS Subscribers after teardown, without the adapter's closed-request
+filter. They are supplementary runtime evidence through frame 10, separate from
+the finite model checks and the 65 named automated tests.
 
 `take` uses quiescent, non-reentrant notification steps. The search model covers at most two distinct query notification IDs, delay 3, integer time through 9, one subscriber and one result followed by completion per request. It excludes timer-deadline ties, synchronous request emissions, source completion/errors, request errors, reentrancy, sharing and fairness/liveness claims. Runtime tests for some excluded cases provide additional runtime evidence, not broader model checking.
 
