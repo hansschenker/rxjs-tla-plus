@@ -12,6 +12,7 @@
     "verify": "npm run check:coverage && npm run verify:models && npm test",
     "check:coverage": "node scripts/check-coverage.mjs",
     "verify:mutation": "node scripts/check-mutation.mjs",
+    "verify:protocol-mutation": "node scripts/check-protocol-mutation.mjs",
     "verify:tla-ts": "node experiments/03-tla-ts/compare.mjs"
   },
   "dependencies": { "rxjs": "7.8.2" }

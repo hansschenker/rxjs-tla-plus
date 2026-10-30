@@ -7,6 +7,10 @@ import { fileURLToPath } from 'node:url';
 import { root, verifyJar, digest, toolchain } from './setup-tlc.mjs';
 import { replaySearchTrace } from '../runtime/replay-search-trace.mjs';
 import { decodeLifecycleTrace, lifecycleReplaySettings, replayLifecycleEvidence, lifecycleEvidenceMarkdown } from './lifecycle-evidence.mjs';
+import {
+  decodeRequestProtocolTrace, requestProtocolReplaySettings,
+  replayRequestProtocolEvidence, requestProtocolEvidenceMarkdown,
+} from './request-protocol-evidence.mjs';
 
 // This parser intentionally accepts only this experiment's scalar trace fields.
 export const decodeSearchTrace = (output) => {
@@ -69,6 +73,7 @@ export const checkModels = async () => {
     await rm(resolve(artifacts, path), { force: true });
   }
   await rm(resolve(artifacts, 'lifecycle'), { recursive: true, force: true });
+  await rm(resolve(artifacts, 'request-protocol'), { recursive: true, force: true });
   const reports = [];
   for (const item of cases) {
     const meta = await mkdtemp(resolve(tmpdir(), 'rxjs-tla-'));
@@ -138,6 +143,17 @@ export const checkModels = async () => {
       await writeFile(resolve(artifacts, 'lifecycle', item.id + '.md'), lifecycleEvidenceMarkdown(item.id, evidence));
       report.runtimeReplay = 'same accepted queries, request starts/stops, notifications, freshness, and settled source/output ownership';
     }
+    if (item.replay === 'request-protocol') {
+      const states = decodeRequestProtocolTrace(output);
+      const settings = requestProtocolReplaySettings(await readFile(resolve(root, item.config), 'utf8'));
+      const evidence = replayRequestProtocolEvidence(states, settings);
+      await mkdir(resolve(artifacts, 'request-protocol'), { recursive: true });
+      await writeFile(resolve(artifacts, 'request-protocol', item.id + '.json'),
+        JSON.stringify({ id: item.id, invariant: item.invariant, purpose: item.purpose, ...evidence }, null, 2) + '\n');
+      await writeFile(resolve(artifacts, 'request-protocol', item.id + '.md'),
+        requestProtocolEvidenceMarkdown(item.id, evidence));
+      report.runtimeReplay = 'same value positions, accepted inner protocol, independent terminals, freshness, and settled ownership';
+    }
     reports.push(report);
     console.log(item.id + ': ' + report.outcome + ' (' + report.distinctStates + ' distinct states)');
   }
@@ -146,6 +162,7 @@ export const checkModels = async () => {
     'experiments.json', 'toolchain.json', 'package.json', 'package-lock.json',
     'runtime/search-pipelines.mjs', 'runtime/replay-search-trace.mjs',
     'runtime/replay-lifecycle-trace.mjs', 'scripts/lifecycle-evidence.mjs',
+    'runtime/replay-request-protocol.mjs', 'scripts/request-protocol-evidence.mjs',
     'scripts/check-models.mjs', 'scripts/setup-tlc.mjs',
   ]))];
   const inputs = await snapshotFiles(files);

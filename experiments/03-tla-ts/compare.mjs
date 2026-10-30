@@ -7,6 +7,9 @@ import { check, parseConfig } from 'tla-ts';
 import { digest, root, verifyJar } from '../../scripts/setup-tlc.mjs';
 import { replaySearchTrace } from '../../runtime/replay-search-trace.mjs';
 import { normalizeLifecycleState, lifecycleReplaySettings, replayLifecycleEvidence } from '../../scripts/lifecycle-evidence.mjs';
+import {
+  normalizeRequestProtocolState, requestProtocolReplaySettings, replayRequestProtocolEvidence,
+} from '../../scripts/request-protocol-evidence.mjs';
 
 const resultsPath = join(root, 'artifacts/tla-ts-results.json');
 rmSync(resultsPath, { force: true });
@@ -14,6 +17,7 @@ const jarPath = await verifyJar();
 const configurations = JSON.parse(readFileSync(join(root, 'experiments.json'), 'utf8'));
 const reports = [];
 const lifecycleReplays = [];
+const requestProtocolReplays = [];
 let searchReplay;
 
 // This adapter consumes typed scalar state fields, not TLC's console text.
@@ -141,6 +145,15 @@ for (const expected of configurations) {
     lifecycleReplays.push({ id: expected.id, invariant: expected.invariant, purpose: expected.purpose, ...evidence });
     report.runtimeReplay = 'structured trace matches settled RxJS notifications, request ownership, and source/output lifecycle';
   }
+  if (expected.replay === 'request-protocol') {
+    const states = javascriptResult.violation.trace
+      .map(({ state }, index) => normalizeRequestProtocolState(state, index));
+    const evidence = replayRequestProtocolEvidence(states, requestProtocolReplaySettings(config));
+    requestProtocolReplays.push({
+      id: expected.id, invariant: expected.invariant, purpose: expected.purpose, ...evidence,
+    });
+    report.runtimeReplay = 'structured trace matches value positions, independent inner terminals, and request ownership in RxJS';
+  }
   reports.push(report);
   console.log(JSON.stringify(report));
 }
@@ -153,6 +166,7 @@ const inputPaths = [
   'experiments/03-tla-ts/package.json', 'experiments/03-tla-ts/package-lock.json',
   'experiments/03-tla-ts/compare.mjs', 'scripts/setup-tlc.mjs', 'scripts/lifecycle-evidence.mjs',
   'runtime/search-pipelines.mjs', 'runtime/replay-search-trace.mjs', 'runtime/replay-lifecycle-trace.mjs',
+  'runtime/replay-request-protocol.mjs', 'scripts/request-protocol-evidence.mjs',
 ];
 writeFileSync(resultsPath, JSON.stringify({
   recordedAt: new Date().toISOString(),
@@ -162,7 +176,9 @@ writeFileSync(resultsPath, JSON.stringify({
   reports,
   searchReplay,
   lifecycleReplays,
+  requestProtocolReplays,
 }, null, 2) + '\n');
+console.log(requestProtocolReplays.length + ' structured request-protocol traces match real RxJS reactions.');
 console.log(`All ${reports.length} unchanged manifest cases agree between tla-ts 0.0.3 and TLC.`);
 console.log('The structured FreshEmission counterexample reproduces stale delivery in real RxJS.');
 console.log(`${lifecycleReplays.length} structured lifecycle traces match real RxJS reactions.`);

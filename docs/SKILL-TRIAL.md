@@ -49,6 +49,44 @@ The expanded suite contains 40 named tests. One new correspondence test delibera
 
 The maintenance classification is **verification updated**: the new scope is modeled and reviewed, with no change to the two pipeline functions. The final source pin and [extension evidence](../verification/evidence/lifecycle-extension/README.md) record the executed results and boundaries. A finite-horizon check and selected trace replays still do not establish universal model/implementation refinement.
 
+## Maintenance continuation: independent request notifications
+
+Experiment 05 separates the request's next, complete and error actions. The
+previous 18-configuration, 40-test baseline passed before changes. The coverage
+guard then reported the new model, adapter, tests and runner changes as requiring
+review; its source pin was retained during semantic review and preflight checks.
+
+The new model bounds each request to at most two accepted values for exploration,
+without forcing completion at that bound. It preserves both cancellation policies,
+both explicit timer-order profiles, source/output separation and ownership.
+Notification positions distinguish equal payloads. The correspondence helper
+counts accepted input positions independently of model output positions and
+rejects invented completion or repeated output positions.
+
+The expanded manifest has 31 configurations. Thirteen belong to the new
+experiment: four positive safety checks, one freshness counterexample, seven
+reachability witnesses and one deliberate model mutation. Both checkers feed the
+eight correct-model negative traces into actual RxJS. The runtime suite adds 20
+protocol tests and five correspondence tests, bringing the total to 65.
+
+The new protocol mutation drill inserts take(1) into a disposable copy of the
+immediate-policy request pipeline. The unchanged multiple-value/completion test
+must reject that implementation. A separate model mutation violates
+NextKeepsRequestActive. The two faults differ in underlying teardown reason and
+are documented as complementary checks, not equivalent traces.
+
+An independent reviewer found no semantic defect and ran 48 additional direct
+RxJS probes, calling retained subscribers even after teardown. This avoids
+relying solely on the replay adapter's explicit suppression of closed-request
+attempts. The probe script and log are retained with the [request-protocol
+evidence](../verification/evidence/request-protocol/README.md), separately from
+the 65 automated tests and the finite model's smaller time horizon.
+
+The classification is **verification updated**. Source identity, executed
+commands, exact checker outcomes, actual trace correspondence and both mutation
+drills are recorded in that snapshot. No canonical operator model or production
+search pipeline is changed by this scope extension.
+
 ## What can move into `rxjs-formal-way` later
 
 The reusable candidates are the explicit event/ownership vocabulary, model-to-code mapping tables, exact-status checking, replay interface, negative controls, and a maintenance workflow with a reviewed source pin. A generated TLA+ exporter or a mandatory verification dependency needs further experiments. Neither is introduced into the canonical repository by this work.

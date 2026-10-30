@@ -27,6 +27,7 @@ jobs:
       - run: npm run setup:tlc
       - run: npm run verify
       - run: npm run verify:mutation
+      - run: npm run verify:protocol-mutation
       - run: npm ci --prefix experiments/03-tla-ts --ignore-scripts --no-audit --no-fund
       - run: npm run verify:tla-ts
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

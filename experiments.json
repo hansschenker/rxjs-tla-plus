@@ -130,5 +130,109 @@
     "invariant": "NoResultCompletion",
     "purpose": "reachability-witness",
     "replay": "lifecycle"
+  },
+  {
+    "id": "protocol-debounced-external",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/debounced-external.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "protocol-debounced-timer",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/debounced-timer.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "protocol-immediate-external",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/immediate-external.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "protocol-immediate-timer",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/immediate-timer.cfg",
+    "expect": "pass"
+  },
+  {
+    "id": "protocol-debounced-freshness",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/debounced-freshness.cfg",
+    "expect": "violation",
+    "invariant": "FreshEmission",
+    "purpose": "counterexample",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-multiple-values",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/multiple-values-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoMultipleValues",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-empty-completion",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/empty-completion-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoEmptyCompletion",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-next-after-source-complete",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/next-after-source-complete-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoNextAfterSourceComplete",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-multi-value-completion",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/multi-value-completion-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoMultiValueCompletion",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-next-then-error",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/next-then-error-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoNextThenError",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-switch-after-value",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/switch-after-value-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoSwitchAfterValue",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-cancel-after-value",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/cancel-after-value-witness.cfg",
+    "expect": "violation",
+    "invariant": "NoCancelAfterValue",
+    "purpose": "reachability-witness",
+    "replay": "request-protocol"
+  },
+  {
+    "id": "protocol-mutant-complete-on-next",
+    "module": "experiments/05-request-protocol/RequestProtocol.tla",
+    "config": "experiments/05-request-protocol/mutant-complete-on-next.cfg",
+    "expect": "violation",
+    "invariant": "NextKeepsRequestActive",
+    "purpose": "model-mutation"
   }
 ]
